@@ -1,0 +1,113 @@
+img#logo {
+    height: 60px;
+    width: auto;
+}
+
+body {
+    font-family: 'Alegreya Sans', sans-serif;
+    overflow: auto;
+}
+
+#splash {
+    margin-top: 50px;
+}
+
+#title {
+    font-family: 'Aclonica', sans-serif;
+    color: #2481A5;
+    font-size: 2rem;
+    margin-top: 75px;
+}
+
+#subtitle {
+    color: #6A42A4;
+    font-size: 1rem;
+    margin-bottom: 75px;
+}
+
+#panel-2 {
+    margin-top: 50px;
+    padding-top: 100px;
+    background-image: url('../img/prism.jpg');
+    width: 100%;
+    min-height: 800px;
+    background-attachment: fixed;
+
+}
+
+.p-header {
+    color: #6BB2CD;
+
+}
+
+.tile-title {
+    font-size: 1.25rem;
+}
+
+div.tile {
+    border-radius: 20px;
+    min-height: 200px;
+    text-align: center;
+    padding: 20px;
+    color: #055472;
+}
+
+.tile-img {
+    border-radius: 50%;
+
+}
+
+.faded {
+    position: relative;
+    display: inline-block;
+    color: white;
+}
+
+.faded:after {
+    border-radius: 50%;
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin-top: -1%;
+    border-collapse: separate;
+    box-shadow: inset 0px 0px 10px 40px white;
+}
+
+@media screen and (min-width: 768px) {
+
+    #title {
+        font-size: 2.5rem;
+    }
+
+    #subtitle {
+        font-size: 1.4rem;
+    }
+
+    .tile-title {
+        font-size: 1.6rem;
+    }
+
+    #panel-2: {
+        height: 800px;
+    }
+}
+
+@media screen and (min-width: 1115px) {
+
+    #title {
+        font-size: 4rem;
+    }
+
+    #subtitle {
+        font-size: 2rem;
+    }
+
+    .tile-title {
+        font-size: 2rem;
+    }
+
+}

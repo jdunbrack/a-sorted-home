@@ -23,9 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_az+ir5x@=qmcz5vs-aw54#c8g5(mlvm3had04^euyw5&8nycd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['18.191.56.72']
 
 
 # Application definition
@@ -80,8 +80,12 @@ WSGI_APPLICATION = 'a_sorted_home.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'a_sorted_home',
+	'USER': 'root',
+	'PASSWORD': 'root',
+	'HOST': 'localhost',
+	'PORT': '3306', 
     }
 }
 
@@ -126,3 +130,4 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
