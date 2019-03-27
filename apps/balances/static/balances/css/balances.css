@@ -12,9 +12,9 @@
 }
 
 .hide-me {
-    display: none;
+    opacity: 0;
 }
 
-input[type=checkbox]:checked .small-profile-pic {
+input[type=checkbox]:checked + label .small-profile-pic {
     opacity: 1;
 }
