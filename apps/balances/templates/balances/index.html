@@ -36,8 +36,8 @@
                 select who you are purchasing for (or at least, who's going to chip in to pay for it)
                 and the balancer will calculate how much each person owes and track it on their page!
             </p>
-            <div class="modal fade" tabindex="-1" role="dialog" id="addPurchaseModal">
-                <div class="modal-dialog slideInDown animated" role="document">
+            <div class="modal" tabindex="-1" role="dialog" id="addPurchaseModal">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -45,7 +45,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form class="form-group" action="/balances/post" method="post">
+                            <form class="form-group" action="/balances/post/" method="post">
                                 {% csrf_token %}
                                 <p class="d-block mb-5 text-muted">Select users that should chip in for this purchase:</p>
                                 {% for member in home_members %}
@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="nav-link" id="add-purchase" data-toggle="modal" data-target="#addPurchaseModal">Add a new purchase</a>
+            <a href="#" id="add-purchase" data-toggle="modal" data-target="#addPurchaseModal">Add a new purchase</a>
             Select a specific person to see spending balances:
             <select id="payee-select" name="payee">
                 <option selected>Select below...</option>
@@ -91,5 +91,6 @@
         <script src="{% static 'login_reg/js/jquery-ui.min.js' %}"></script>
         <script src="{% static 'user_dash/js/navbar.js' %}"></script>
         <script src="{% static 'balances/js/balances.js' %}"></script>
+        <script src="{% static 'login_reg/js/bootstrap.bundle.min.js' %}"></script>
     </body>
 </html>
