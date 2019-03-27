@@ -33,7 +33,7 @@ class User(models.Model):
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=60)
     payment_url = models.CharField(max_length=255, blank=True)
-    profile_pic = models.TextField(default="")
+    profile_pic = models.TextField(default="/static/user_dash/img/default.png")
     my_home = models.ForeignKey(Home, related_name="owner", null=True, on_delete=models.SET_NULL)
     home = models.ForeignKey(Home, related_name="members", null=True, on_delete=models.SET_NULL)
     created_at = models.DateTimeField(auto_now_add=True)

@@ -25,7 +25,10 @@ SECRET_KEY = '_az+ir5x@=qmcz5vs-aw54#c8g5(mlvm3had04^euyw5&8nycd'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False 
 
-ALLOWED_HOSTS = ['18.191.56.72']
+ALLOWED_HOSTS = [
+    '18.191.56.72',
+    'www.asortedhome.com',
+]
 
 
 # Application definition
