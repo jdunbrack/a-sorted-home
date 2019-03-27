@@ -8,10 +8,6 @@ body {
     overflow: auto;
 }
 
-#splash {
-    margin-top: 50px;
-}
-
 #title {
     font-family: 'Aclonica', sans-serif;
     color: #2481A5;
@@ -23,6 +19,13 @@ body {
     color: #6A42A4;
     font-size: 1rem;
     margin-bottom: 75px;
+}
+
+#splash-img {
+    box-shadow: 1 1 5px 5px #6A42A4;
+    box-shadow: -1 1 5px 5px #6A42A4;
+    box-shadow: 1 -1 5px 5px #6A42A4;
+    box-shadow: -1 -1 5px 5px #6A42A4;
 }
 
 #panel-2 {
