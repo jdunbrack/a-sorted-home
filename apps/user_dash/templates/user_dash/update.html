@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <title>a Sorted Home - Update Info</title>
+        <link rel="stylesheet" href="{% static 'login_reg/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'user_dash/css/navbar.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'user_dash/css/user-edit.css' %}">
+    </head>
+    <body>
+        <div class="d-block mb-4 bg-dark">
+            <img id="logo" src="{% static 'login_reg/img/asortedhome.svg' %}">
+        </div>
+        <div id="sidenav" class="sidenav">
+            <a href="#" class="d-block text-right closebtn navbar-toggler pr-3" id="closeNav"><i class="ml-auto fas fa-minus-square ash-light"></i></a>
+            <a class="navlink" href="/users/dash">Dashboard</a>
+            <a class="navlink" href="/balances">Balances</a>
+            <a class="navlink" href="/tasks">Tasks</a>
+            <a class="navlink" href="/chat">Chat</a>
+            <a class="navlink" id="logout" href="/login/logout">Log Out</a>
+            <!-- <a href="/corkboard">Corkboard</a> -->
+        </div>
+        <div id="nav-tab" class="position-fixed">
+            <a href="#" class="openbtn navbar-toggler" id="openNav"><i class="fas fa-plus-square ash-light"></i></a>
+        </div>
+
+        <div class="col-8 mx-auto">
+            <form id="info-update" class="ml-4 form-group" action="/users/update" method="post">
+                {% csrf_token %}
+                First Name: <input class="form-control my-2 col-6" type="text" name="first-name" value="{{user.first_name}}">
+                Last Name: <input class="form-control my-2 col-6" type="text" name="last-name" value="{{user.last_name}}">
+                Email: <input class="form-control my-2 col-6" type="email" name="email" value="{{ user.email }}">
+                Please enter your password again to save this information:
+                <input id="pw-1" class="form-control my-2 col-6" type="password" name="password">
+                <div id="pw1-warn"></div>
+                <input class="btn btn-primary btn-lg my-3 mx-auto" type="submit" value="Save"> 
+            </form>
+            <img class="divider col-12" src="{% static 'login_reg/img/divider.jpg' %}">
+            <form class="form-group ml-4" action="/users/add-picture" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <img id="profile-pic" src="{{user.profile_image}}">
+                <p>Upload a profile picture:</p>
+                <div class="custom-file col-6">
+                    <input type="file" class="custom-file-input" id="customFile" name="profile-pic">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <p class="small text-muted">Profile picture is not updated until you hit save below!</p>
+                <input class="btn btn-primary btn-lg mb-3 mx-auto" type="submit" value="Save">
+            </form>
+            <img class="divider col-12" src="{% static 'login_reg/img/divider.jpg' %}">
+            <form id="pw-update" class="ml-4 form-group" action="/users/change-pw" method="post">
+                {% csrf_token %}
+                To update your password, please enter your current password followed by your new password twice.
+                Current Password: <input id="pw-2" class="form-control mb-4 col-6" type="password" name="current-pw">
+                <div id="pw2-warn"></div>
+                New Password: <input id="new-pw" class="form-control mb-2 col-6" type="password" name="new-pw">
+                Confirm New Password: <input id="new-pw-confirm" class="form-control col-6" type="password" name="new-pw-confirm">
+                <div id="new-pw-warn"></div>
+                <input class="btn btn-primary btn-lg my-3" type="submit" value="Save New Password">
+            </form>
+        </div>
+
+        <script src="{% static 'login_reg/js/jquery.min.js' %}"></script>
+        <script src="{% static 'user_dash/js/navbar.js' %}"></script>
+        <script src="{% static 'user_dash/js/user-edit.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="description" content="An app to organize living with other people. Track spending, chores, communication, and more.">
+        <title>a Sorted Home</title>
+        <link href="https://fonts.googleapis.com/css?family=Aclonica|Alegreya+Sans" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'login_reg/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'login_reg/css/style.css' %}">
+    </head>
+    <body>
+        {% if request.session.uid %}
+            <input type="hidden" id="logged_in" value="true">
+        {% else %}
+            <input type="hidden" id="logged_in" value="false">
+        {% endif %}
+        <div class="modal fade" tabindex="-1" role="dialog" id="loginModal">
+            <div class="modal-dialog slideInDown animated" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="login-form">
+                            <form id="login" class="form-group" action="/login" method="post">
+                                {% csrf_token %}
+                                Email: <input type="email" id="login-email" class="form-control my-2" name="email">
+                                Password: <input type="password" id="login-pw" class="form-control my-2" name="password">
+                                <input type="hidden" name="login_reg" value="login">
+                                <div id="login-warn" class="small text-danger"></div>
+                                <p class="text-center">
+                                    <a href="#" role="button" class="btn btn-secondary btn-sm modal-toggler" aria-content="go to registration form">Go to Register</a>
+                                    <input id="login-btn" type="submit" value="Log In" class="btn btn-primary btn-lg">
+                                </p>
+                            </form>
+                        </div>
+                        <div id="reg-form">
+                            <form id="register" class="form-group" action="/register" method="post">
+                                {% csrf_token %}
+                                First Name: <input type="text" id="reg-fname" class="form-control my-2" name="first-name" required>
+                                Last Name: <input type="text" id="reg-lname" class="form-control my-2" name="last-name" required>
+                                Email address: <input type="email" id="reg-email" class="form-control my-2" name="email" required>
+                                <div id="email-warn" class="small text-danger"></div>
+                                Password: <input type="password" class="form-control mt-2" id="reg-pw-entry" name="pw-entry" required>
+                                <div id="pw-warn" class="small text-danger"></div>
+                                Confirm: <input type="password" class="form-control mb-2" id="reg-pw-confirm" name="pw-confirm" required>
+                                Joining an existing Group? Enter its ID: <input class="form-control mb-2" type="text" name="join-id">
+                                <input type="hidden" name="login_reg" value="register">
+                                <p class="text-center">
+                                    <a href="#" class="btn btn-secondary btn-sm modal-toggler" role="button" aria-content="go to login form">Back to Login</a>
+                                    <input id="register-btn" class="btn btn-primary btn-lg" type="submit" value="Register">
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a href="#" class="navbar-brand"><img id="logo" src="{% static 'login_reg/img/asortedhome.svg' %}"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse font-weight-bold" id="navBar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a href="#" class="nav-link">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Features</a>
+                    </li>
+                    <li id="my-acct-link" class="nav-item hide">
+                        <a href="/users/dash" class="nav-link" id="my-acct" alt="My Account">My Dash</a>
+                    </li>
+                    <li id="logout-link" class="nav-item hide">
+                        <a href="/login/logout" class="nav-link" id="logout" alt="Log Out">Log Out</a>
+                    </li>
+                    <li id="login-link" class="nav-item">
+                        <a href="#" class="nav-link" id="login" data-toggle="modal" data-target="#loginModal">Log In</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="d-flex flex-wrap flex-md-nowrap flex-container flex-row align-items-center justify-content-around" id="splash">
+            <div class="col-12 col-md-6 text-center">
+                <h1 id="title">a Sorted Home</h1>
+                <h5 id="subtitle" class="font-weight-bold">Handling logistics of multi-person living</h5>
+            </div>
+            <div class="col-6 col-md-4 d-inline-flex text-center" id="splash-img">
+                <img src="{% static 'login_reg/img/budget-reckon.png' }}">
+            </div>
+        </div>
+
+
+        <div id="panel-2" class="w-100">
+            <h4 class="d-block p-header font-weight-bolder text-center mb-5">
+                Can't keep track of who's done what, paid what, going to what... etc?
+            </h4>
+            <div class="d-flex flex-wrap flex-md-nowrap justify-content-around">
+                <div class="col-8 col-md-3 my-5 my-md-0 bg-white d-inline-block tile">
+                    <h2 class="tile-title">Track</h2>
+                    <img class="col-11" src="{% static 'login_reg/img/divider.jpg' %}">
+                    <p class="mt-5">
+                        Have tasks to track? How about contributing for group purchases? Leave
+                        your notepads wherever they live, as <span class="text-secondary">a Sorted Home</span>
+                        keeps tabs on who's doing what, and helps tally any money put in for group
+                        purchases.
+                    </p>
+                </div>
+                <div class="col-8 col-md-3 my-5 my-md-0 bg-white d-inline-block tile">
+                    <h2 class="tile-title">Plan</h2>
+                    <img class="col-11" src="{% static 'login_reg/img/divider.jpg' %}">
+                    <p class="mt-5">
+                        Have schedules to track? How about social events, parties, or group lunches?
+                        <span class="text-secondary">a Sorted Home</span> provides the tools you
+                        need to make sure everyone stays on the same page as plans take shape.
+                    </p>
+                </div>
+                <div class="col-8 col-md-3 my-5 my-md-0 bg-white d-inline-block tile">
+                    <h2 class="tile-title">Communicate</h2>
+                    <img class="col-11" src="{% static 'login_reg/img/divider.jpg' %}">
+                    <p class="mt-5">
+                        Group texts getting overwhelming? Now send messages to everyone in your Home
+                        Group, or to specific users, all in one space. Have an announcement to make?
+                        Picture to share? Put it up on the corkboard where everyone can see it!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <script src="{% static 'login_reg/js/jquery.min.js' %}"></script>
+        <script src="{% static 'login_reg/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'login_reg/js/main.js' %}"></script>
+    </body>
+</html>

@@ -1,0 +1,52 @@
+{% load static %}
+{% load mathfilters %}
+<table class="table table-striped my-5">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Store</th>
+            <th>Notes</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{transaction.payor}}</td>
+                <td>{{transaction.amount|floatformat:2}}</td>
+                <td>{{transaction.store}}</td>
+                <td>{{transaction.description}}</td>
+                <td><a href="/balances/remove/{{transaction.id}}" alt="Remove this transaction"><i class="fas fa-minus-square ash-dark"></i></a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="row justify-content-around text-center">
+    <div class="col-3">
+        <img src="{{this_user.profile_pic}}">
+        <p>{{this_user.first_name}}</p>
+    </div>
+    <div class="col-3">
+        {% if owed < 0 %}
+            <h3>${{owed|abs|floatformat:2}}</h3>
+            <img src="{% static 'balances/img/arrow.png' %}" style="transform: rotate(180deg);">
+            {% if other_user.payment_url %}
+                <a class="btn btn-lg btn-primary" role="button" href="{{other_user.payment_url}}/{{owed|abs|floatformat:2}}" alt="Pay Now">Pay Now</a>
+            {% endif %}
+        {% else %}
+            <h3>${{owed|floatformat:2}}</h3>
+            <img src="{% static 'balances/img/arrow.png' %}">
+        {% endif %}
+    </div>
+    <div class="col-3">
+        <img src="{{other_user.profile_pic}}">
+        <p>{{other_user.first_name}}</p>
+    </div>
+
+    <div class="mx-auto text-center mb-5">
+        And, once you have paid you should
+        <a class="btn btn-sm btn-secondary ml-2" role="button" href="/balances/clear/{{other_user.id}}" alt="Clear Balances">Clear Balances</a>
+    </div>
+</div>

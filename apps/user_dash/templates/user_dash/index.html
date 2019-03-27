@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <title>a Sorted Home - Dashboard</title>
+        <link rel="stylesheet" href="{% static 'login_reg/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'login_reg/css/main.css' %}">
+        <link rel="stylesheet" href="{% static 'user_dash/css/navbar.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'user_dash/css/dashboard.css' %}">
+    </head>
+    <body>
+        <div class="d-block mb-4 bg-dark">
+            <img id="logo" src="{% static 'login_reg/img/asortedhome.svg' %}">
+        </div>
+        <div id="sidenav" class="sidenav">
+            <a href="#" class="d-block text-right closebtn navbar-toggler pr-3" id="closeNav"><i class="ml-auto fas fa-minus-square ash-light"></i></a>
+            <a class="navlink" href="/users/dash">Dashboard</a>
+            <a class="navlink" href="/balances">Balances</a>
+            <a class="navlink" href="/tasks">Tasks</a>
+            <a class="navlink" href="/chat">Chat</a>
+            <a class="navlink" id="logout" href="/login/logout">Log Out</a>
+            <!-- <a href="/corkboard">Corkboard</a> -->
+        </div>
+        <div id="nav-tab" class="position-fixed">
+            <a href="#" class="openbtn navbar-toggler" id="openNav"><i class="fas fa-plus-square ash-light"></i></a>
+        </div>
+
+        <h3 class="d-block text-center">Welcome, {{user.first_name}}!</h3>
+        <br />
+        <div class="col-8 mx-auto">
+            <div class="row">
+                <h4 class="d-inline-block col-3">You:</h4>
+                <div class="col-8 align-self-end">
+                    <img class="profile-pic" src="{{user.profile_pic}}" alt="Profile Picture">
+                    <p>{{user.first_name}} {{user.last_name}}</p>
+                    <p>{{user.email}}</p>
+                    <a href="/users/dash/edit" alt="Edit Info">Edit/Update Information</a>
+                </div>
+            </div>
+
+            <img class="divider col-12 my-5" src="{% static 'login_reg/img/divider.jpg' %}">
+
+            <div class="row">
+                <h4 class="d-inline-block col-3">Your Group:</h4>
+                <div class="col-8 align-self-end">
+                    {% if this_home %}
+                        <h5>{{this_home.name}}</h5>
+                        <table class="table table-striped col-6">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Date Joined</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for member in this_home.members.all %}
+                                <tr>
+                                    <td>{{member.first_name}}</td>
+                                    <td>{{member.joined_date.created_at}}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <p class="my-5">
+                            Join ID: {{this_home.join_id}}
+                            <span class="d-block small text-muted">
+                                (Give this to someone so they can join your home group!)<br/>(It is case sensitive, so it's best to copy/paste.)
+                            </span>
+                        </p>
+                        <a class="d-block" href="/chat" alt="Go to Chat">Message Group</a>
+                        {% spaceless %}
+                        <a class="d-block" href="mailto:
+                            {% for member in this_home.members.all %}
+                            {{member.email}},
+                            {% endfor %}
+                            " alt="Send Group Email">Email Group</a>
+                        {% endspaceless %}
+                        {% if user.id == this_home.owner.first.id %}
+                            <a class="d-block" href="/users/home/edit" alt="Edit Group">Manage Group</a>
+                            <a class="d-block text-danger" href="#" id="delete-link" alt="Leave Group">Delete Group</a>
+                            <div id="delete-button">
+                                <a class="form-close" href="#" alt="Hide Form"><span class="fas fa-minus-square ash-dark"></span></a>
+                                <p>This cannot be reversed! All data related to this group will be destroyed!</p>
+                                <a href="/users/home/delete" class="btn btn-lg btn-danger">Delete Home Group</a>
+                            </div>
+                        {% else %}
+                            <a href="#" class="text-danger" id="leave-link" alt="Leave Group">Leave Group</a>
+                            <div id="leave-button">
+                                <a class="form-close" href="#" alt="Hide Form"><span class="fas fa-minus-square ash-dark"></span></a>
+                                <p>This cannot be reversed! You will lose all data related to being in this home group!</p>
+                                <a href="/users/home/leave" class="btn btn-lg btn-danger">Leave Home Group</a>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                    <p>You don't have a home group yet!</p>
+                    <a id="show-create" class="d-block" href="#" alt="Create a Home">Create a new Home Group.</a>
+                    <form class="form-group" id="create-form" action="/users/home/create" method="post">
+                        {% csrf_token %}
+                        <a class="form-close" href="#" alt="Hide Form"><span class="d-block fas fa-minus-square ash-dark"></span></a>
+                        New Group Name: <input class="form-control" type="text" name="name" placeholder="Home Sweet Home">
+                        <p class="small text-muted">Your home name can be anything you want! Some use the street address, some use their last name, others make something up!</p>
+                        <input class="btn btn-lg btn-primary my-3" type="submit" value="Create Group">
+                    </form>
+                    <a id="show-join" class="d-block" href="#" alt="Join a Home">Join an existing Home Group.</a>
+                    <form class="form-group" id="join-form" action="/users/home/join" method="post">
+                        {% csrf_token %}
+                        <a class="form-close" href="#" alt="Hide Form"><span class="fas fa-minus-square ash-dark"></span></a>
+                        Home Group's Join ID: <input class="form-control" type="text" name="join-id">
+                        <input class="btn btn-lg btn-primary my-3" type="submit" value="Join Group">
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+
+            <img class="divider col-12 my-5" src="{% static 'login_reg/img/divider.jpg' %}">
+
+            <div class="row">
+                <h4 class="d-inline-block col-3">Settings:</h4>
+                <div class="col-8 align-self-end">
+                    <form class="form-group" action="/users/dash/edit-payment" method="post">
+                        {% csrf_token %}
+                        Preferred payment URL: <input class="form-control" type="text" name="payment-url" value="{{user.payment_url}}">
+                        <p class="small text-muted">Example: "https://www.paypal.me/&laquo;username&raquo;"</p>
+                        <input class="btn btn-lg btn-primary" type="submit" value="Update">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="{% static 'login_reg/js/jquery.min.js' %}"></script>
+        <script src="{% static 'user_dash/js/navbar.js' %}"></script>
+        <script src="{% static 'user_dash/js/dashboard.js' %}"></script>
+    </body>
+</html>

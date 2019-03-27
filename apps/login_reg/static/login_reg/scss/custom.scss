@@ -1,0 +1,93 @@
+// Main Primary color */
+$primary-colors: (
+    'lightest': #8A67BD,
+    'lighter': #6A42A4,
+    'default': #552898,
+    'darker': #3F167C,
+    'darkest': #2D0962
+);
+// Main Secondary color */
+$secondary-colors: (
+    'lightest': #6BB2CD,
+    'lighter': #4296B6,
+    'default': #2481A5,
+    'darker': #086D94,
+    'darkest': #055472
+);
+// overriding theme defaults
+$theme-colors: (
+    'primary': primary-color('default'),
+    'secondary': secondary-color('default'),
+    'light': primary-color('lightest'),
+    'dark': primary-color('darkest'),
+    'muted': secondary-color('lighter'),
+    'info': secondary-color('darker')
+);
+
+
+@function theme-color($key) {
+    @return map-get($theme-colors, $key);
+}
+
+@function primary-color($key) {
+    @return map-get($primary-colors, $key);
+}
+
+@function secondary-color($key) {
+    @return map-get($secondary-colors, $key);
+}
+
+$indigo:    primary-color('default');
+$cyan:      secondary-color('default');
+
+$body-color: primary-color('darkest');
+
+$link-color: secondary-color('darker');
+
+$text-muted: theme-color('muted');
+
+$table-accent-bg:             rgba(primary-color('darkest'), .05);
+$table-hover-bg:              rgba(primary-color('darkest'), .075);
+
+$table-dark-bg:               primary-color('darker');
+
+$nav-tabs-border-color:             primary-color('lightest');
+$nav-tabs-link-hover-border-color:  primary-color('lighter');
+$nav-tabs-link-active-color:        secondary-color('darker');
+$nav-tabs-link-active-border-color: primary-color('lighter');
+
+$nav-pills-link-active-color:       primary-color('lightest');
+$nav-pills-link-active-bg:          primary-color('default');
+
+$nav-divider-color:                 primary-color('lightest');
+
+$navbar-dark-color:                 rgba(#6BB2CD, .5);
+$navbar-dark-hover-color:           rgba(#6BB2CD, .75);
+$navbar-dark-active-color:          secondary-color('lightest');
+$navbar-dark-disabled-color:        rgba(#6BB2CD, .25);
+$navbar-dark-toggler-border-color:  rgba(#6BB2CD, .1);
+
+$navbar-light-color:                rgba(secondary-color('darkest'), .5);
+$navbar-light-hover-color:          rgba(secondary-color('darkest'), .7);
+$navbar-light-active-color:         rgba(secondary-color('darkest'), .9);
+$navbar-light-disabled-color:       rgba(secondary-color('darkest'), .3);
+$navbar-light-toggler-border-color: rgba(secondary-color('darkest'), .1);
+
+$dropdown-bg:                       primary-color('lighest');
+$dropdown-border-color:             rgba(primary-color('darkest'), .15);
+$dropdown-box-shadow:               0 .5rem 1rem rgba(primary-color('darkest'), .175);
+
+$dropdown-link-color:               secondary-color('darkest');
+$dropdown-link-hover-color:         darken(#055472, 5%);
+$dropdown-link-hover-bg:            primary-color('lightest');
+
+$dropdown-header-color:             secondary-color('darker');
+
+$modal-content-color:               secondary-color('darkest');
+
+$modal-fade-transform:              translate(0, -150px) !default;
+$modal-show-transform:              none !default;
+$modal-transition:                  transform .3s ease-out !default;
+
+// Bootstrap scss files
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";

@@ -1,0 +1,12 @@
+{% if valid %}
+<p class="small text-success">Valid password!</p>
+{% else %}
+<p class="small text-danger">Password must:</p>
+<ul class="small text-danger">
+    <li>Be at least 8 characters.</li>
+    <li>Contain minimum one capital letter.</li>
+    <li>Contain minimum one lower case letter.</li>
+    <li>Contain minimum one number.</li>
+    <li>Match in both fields.</li>
+</ul>
+{% endif %}

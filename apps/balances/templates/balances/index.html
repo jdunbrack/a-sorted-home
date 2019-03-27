@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <title>a Sorted Home - Spending Balances</title>
+        <link rel="stylesheet" href="{% static 'login_reg/css/main.css' %}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'user_dash/css/navbar.css' %}">
+    </head>
+    <body>
+        <div class="d-block mb-4 bg-dark">
+            <img id="logo" src="{% static 'login_reg/img/asortedhome.svg' %}">
+        </div>
+        <div id="sidenav" class="sidenav">
+            <a href="#" class="d-block text-right closebtn navbar-toggler pr-3" id="closeNav"><i class="ml-auto fas fa-minus-square ash-light"></i></a>
+            <a class="navlink" href="/users/dash">Dashboard</a>
+            <a class="navlink" href="/balances">Balances</a>
+            <a class="navlink" href="/tasks">Tasks</a>
+            <a class="navlink" href="/chat">Chat</a>
+            <a class="navlink" id="logout" href="/login/logout">Log Out</a>
+            <!-- <a href="/corkboard">Corkboard</a> -->
+        </div>
+        <div id="nav-tab" class="position-fixed">
+            <a href="#" class="openbtn navbar-toggler" id="openNav"><i class="fas fa-plus-square ash-light"></i></a>
+        </div>
+
+        <h2 class="text-center">Spending & Balances</h2>
+        <div id="test" class="col-8 mx-auto">
+            <h5 class="text-center my-4">Can't keep track of who owes whom how much and for what?</h5>
+            <p class="mb-5">
+                The easy solution is here. In the form below, enter your spending totals, the store
+                where the purchase was made, and any notes (such as "Groceries for the week" or
+                "Gas for the roadtrip") so you can remember later what it was you bought! Finally,
+                select who you are purchasing for (or at least, who's going to chip in to pay for it)
+                and the balancer will calculate how much each person owes and track it on their page!
+            </p>
+            <form class="form-group" action="/balances/post" method="post">
+                {% csrf_token %}
+                <p class="d-block mb-5 text-muted">Select users that should chip in for this purchase:</p>
+                <div class="form-row border-dark my-4">
+                {% for member in home_members %}
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="customCheck1" name="splits" value="{{member.id}}" {% if home_members|length == 1 %}selected{% endif %}>
+                        <label class="custom-control-label" for="customCheck1">{{member.first_name}} {{member.last_name}}</label>
+                    </div>
+                {% endfor %}
+                </div>
+                <div class="form-row">
+                    <div class="col mb-4">
+                        <label class="text-muted" for="dol-amt">Dollar Amount:</label>
+                        <input class="form-control" id="dol-amt" type="number" name="amount" value="0.00">
+                    </div>
+                    <div class="col mb-4">
+                        <label class="text-muted" for="store-name">Store:</label>
+                        <input class="form-control" id="store-name" type="text" name="store" placeholder="Fry's">
+                    </div>
+                    <div class="col-6 mb-4">
+                        <label class="text-muted" for="notes-field">Notes:</label>
+                        <input class="form-control" id="notes-field" type="text" name="notes" placeholder="Describe the purchase">
+                    </div>
+                </div>
+                <input type="submit" value="Save Purchase">
+            </form>
+
+            Select a specific person to see spending balances:
+            <select id="payee-select" name="payee">
+                <option selected>Select below...</option>
+                {% for member in home_members %}
+                    <option value="{{member.id}}">{{member.first_name}} {{member.last_name}}</option>
+                {% endfor %}
+            </select>
+
+            <div id="balance-table"></div>
+        </div>
+
+        <script src="{% static 'login_reg/js/jquery.min.js' %}"></script>
+        <script src="{% static 'login_reg/js/jquery-ui.min.js' %}"></script>
+        <script src="{% static 'user_dash/js/navbar.js' %}"></script>
+        <script src="{% static 'balances/js/balances.js' %}"></script>
+    </body>
+</html>
