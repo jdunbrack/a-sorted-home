@@ -94,6 +94,7 @@ $('#login-btn').click(function(e) {
                 $('#logout-link').show();
                 $('#login-link').hide();
                 $('#logged_in').attr('value', 'true');
+                window.location.href = "/users/dash";
             }
         }
     })
