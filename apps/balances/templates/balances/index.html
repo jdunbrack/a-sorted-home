@@ -50,6 +50,7 @@
                                 {% for member in home_members %}
                                     <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="customCheck1" name="splits" value="{{member.id}}" {% if home_members|length == 1 %}selected{% endif %}>
+                                        <img class="small-profile-pic" src="{{member.profile_pic}}">
                                         <label class="custom-control-label" for="customCheck1">{{member.first_name}} {{member.last_name}}</label>
                                     </div>
                                 {% endfor %}

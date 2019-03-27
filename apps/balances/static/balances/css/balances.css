@@ -1,0 +1,11 @@
+.medium-profile-pic {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+
+.small-profile-pic {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+}
