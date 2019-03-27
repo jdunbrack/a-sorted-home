@@ -55,7 +55,7 @@ def upload_image(request):
 
     this_user = this_user[0]
 
-    save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', request.FILES['profile-pic'])
+    save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', request.FILES['profile-pic'].name)
     path = default_storage.save(save_path, request.FILES['profile-pic'])
     this_user.profile_pic = path
     this_user.save()
