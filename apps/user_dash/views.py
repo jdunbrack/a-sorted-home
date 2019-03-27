@@ -58,8 +58,8 @@ def upload_image(request):
     IMAGE_REGEX = re.compile(r'^image')
 
     if IMAGE_REGEX.match(request.files['profile-pic'].content_type) == None:
-	messages.error("Please upload an image file.")
-	return redirect('/users/dash')
+        messages.error("Please upload an image file.")
+        return redirect('/users/dash')
 
     save_name = str(request.session['uid']) + "_" + create_join_id() + create_join_id() + request.FILES['profile-pic'].name[-4:]
 
