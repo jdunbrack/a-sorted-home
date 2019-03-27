@@ -40,7 +40,7 @@
             <img class="divider col-12" src="{% static 'login_reg/img/divider.jpg' %}">
             <form class="form-group ml-4" action="/users/add-picture" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <img id="profile-pic" src="{{user.profile_image}}">
+                <img id="profile-pic" src="{{user.profile_pic}}">
                 <p>Upload a profile picture:</p>
                 <input type="file" id="customFile" name="profile-pic">
                 <p class="small text-muted">Profile picture is not updated until you hit save below!</p>
