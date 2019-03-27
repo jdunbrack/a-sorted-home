@@ -13,6 +13,8 @@
 
 .hide-me {
     opacity: 0;
+    height: 0px;
+    width: 0px;
 }
 
 input[type=checkbox]:checked + label .small-profile-pic {
