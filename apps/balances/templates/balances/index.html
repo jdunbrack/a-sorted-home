@@ -49,11 +49,9 @@
                                 {% csrf_token %}
                                 <p class="d-block mb-5 text-muted">Select users that should chip in for this purchase:</p>
                                 {% for member in home_members %}
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="customCheck1" name="splits" value="{{member.id}}" {% if home_members|length == 1 %}selected{% endif %}>
-                                        <img class="small-profile-pic" src="{{member.profile_pic}}">
-                                        <label class="custom-control-label" for="customCheck1">{{member.first_name}} {{member.last_name}}</label>
-                                    </div>
+                                    
+                                    <input type="checkbox" class="form-control" id="customCheck1" name="splits" value="{{member.id}}" {% if home_members|length == 1 %}selected{% endif %}>
+                                    <label for="customCheck1"><img class="small-profile-pic" src="{{member.profile_pic}}">{{member.first_name}} {{member.last_name}}</label>
                                 {% endfor %}
                                 <div class="form-row">
                                     <div class="col mb-4">
