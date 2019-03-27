@@ -59,7 +59,7 @@ def upload_image(request):
     path = default_storage.save(save_path, request.FILES['profile-pic'])
     this_user.profile_pic = path
     this_user.save()
-    
+    return redirect('/users/dash')
 
 def update_user(request):
     this_user = User.objects.filter(id=request.session['uid'])
