@@ -2,3 +2,4 @@ db.sqlite3
 requirements.txt
 a_sorted_home.sock
 venv/
+media/

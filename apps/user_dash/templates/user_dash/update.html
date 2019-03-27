@@ -43,6 +43,11 @@
                 <img id="profile-pic" src="{{user.profile_pic}}">
                 <p>Upload a profile picture:</p>
                 <input type="file" id="customFile" name="profile-pic">
+		{% if messages %}
+		{% for message in messages %}
+		<span class="small text-danger">{{message}}</span>
+		{% endfor %}
+		{% endif %}
                 <p class="small text-muted">Profile picture is not updated until you hit save below!</p>
                 <input class="btn btn-primary btn-lg mb-3 mx-auto" type="submit" value="Save">
             </form>

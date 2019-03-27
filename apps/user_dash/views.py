@@ -55,9 +55,17 @@ def upload_image(request):
 
     this_user = this_user[0]
 
-    save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', request.FILES['profile-pic'].name)
+    IMAGE_REGEX = re.compile(r'^image')
+
+    if IMAGE_REGEX.match(request.files['profile-pic'].content_type) == None:
+	messages.error("Please upload an image file.")
+	return redirect('/users/dash')
+
+    save_name = str(request.session['uid']) + "_" + create_join_id() + create_join_id() + request.FILES['profile-pic'].name[-4:]
+
+    save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', save_name) 
     path = default_storage.save(save_path, request.FILES['profile-pic'])
-    this_user.profile_pic = "/media/uploads/" + request.FILES['profile-pic'].name
+    this_user.profile_pic = "/media/uploads/" + save_name 
     this_user.save()
     return redirect('/users/dash')
 
