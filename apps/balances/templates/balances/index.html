@@ -49,7 +49,7 @@
                                 {% csrf_token %}
                                 <p class="d-block mb-5 text-muted">Select users that should chip in for this purchase:</p>
                                 {% for member in home_members %}
-                                    <input type="checkbox" class="form-control" class="hide-me" id="checkbox{{member.id}}" name="splits" value="{{member.id}}" {% if home_members|length == 1 %}selected{% endif %}>
+                                    <input type="checkbox" class="form-control hide-me" id="checkbox{{member.id}}" name="splits" value="{{member.id}}" {% if home_members|length == 1 %}selected{% endif %}>
                                     <label for="checkbox{{member.id}}"><img class="small-profile-pic" src="{{member.profile_pic}}">{{member.first_name}} {{member.last_name}}</label>
                                 {% endfor %}
                                 <div class="form-row">
@@ -72,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" id="add-purchase" data-toggle="modal" data-target="#addPurchaseModal">Add a new purchase</a>
+            <p><a href="#" id="add-purchase" data-toggle="modal" data-target="#addPurchaseModal">Add a new purchase</a></p>
             Select a specific person to see spending balances:
             <select id="payee-select" name="payee">
                 <option selected>Select below...</option>
