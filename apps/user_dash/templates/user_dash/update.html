@@ -42,7 +42,7 @@
                 {% csrf_token %}
                 <img id="profile-pic" src="{{user.profile_image}}">
                 <p>Upload a profile picture:</p>
-                <input type="file" class="form-control" id="customFile" name="profile-pic">
+                <input type="file" id="customFile" name="profile-pic">
                 <p class="small text-muted">Profile picture is not updated until you hit save below!</p>
                 <input class="btn btn-primary btn-lg mb-3 mx-auto" type="submit" value="Save">
             </form>
