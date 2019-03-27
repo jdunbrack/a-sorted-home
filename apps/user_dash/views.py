@@ -46,10 +46,20 @@ def edit_user(request):
 
     return render(request, 'user_dash/update.html', context)
 
-def file_upload(request):
+def upload_image(request):
+    this_user = User.objects.filter(id=request.session['uid'])
+
+    if len(this_user) != 1:
+        request.session.clear()
+        return redirect('/')
+
+    this_user = this_user[0]
+
     save_path = os.path.join(settings.MEDIA_ROOT, 'uploads', request.FILES['profile-pic'])
     path = default_storage.save(save_path, request.FILES['profile-pic'])
-    return default_storage.path(path)
+    this_user.profile_pic = path
+    this_user.save()
+    
 
 def update_user(request):
     this_user = User.objects.filter(id=request.session['uid'])

@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^home/delete$', views.delete_home),
     url(r'^home/edit$', views.edit_home),
     url(r'^home/remove/(?P<user_id>\d+)$', views.remove_member),
+    url(r'^add-picture$', views.upload_image),
 ]
 
 if settings.DEBUG:
