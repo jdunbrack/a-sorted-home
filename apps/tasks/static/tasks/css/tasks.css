@@ -11,10 +11,11 @@
 
 .task-tile {
     border-radius: 40px;
+    min-height: 300px;
 }
 
 .main-tile {
-    background-color: gray;
+    background-color: lightslategray;
 }
 
 .task-tile a {

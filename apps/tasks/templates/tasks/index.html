@@ -49,7 +49,7 @@
                                 <input class="form-control col-8" id="task-name" type="text" name="name" placeholder="Walk Dog">
                                 <label for="task-desc">Decsription:</label><span class="small text-muted">(Max 255 Characters)</span>
                                 <textarea class="form-control col-12" id="task-desc" name="desc"></textarea> 
-                                <input type="submit" value="Add Task">
+                                <input class="btn btn-lg button-primary mx-auto" type="submit" value="Add Task">
                             </form> 
                         </div>
                     </div>
@@ -62,7 +62,7 @@
             <div class="main-tile task-tile col-6 col-md-3 mx-auto text-center my-5">
                 {% if user.home %}
                     <h5>{{user.home.name}}</h5>
-                    <p class="text-secondary">This group has {{user.home.all_tasks|length}} general tasks.</p>
+                    <p class="text-info">This group has {{user.home.all_tasks|length}} general tasks.</p>
                     {% for task in tasks %}
                         <div class="d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
                             {{task.name}}
