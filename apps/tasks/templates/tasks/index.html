@@ -93,28 +93,26 @@
                         </div>
                     {% endfor %}
                 </div>
-            </div>
-
-            {% for member in user.home.members.all %}
-                {% if member.id == user.id %}
-                {% else %}
-                <div class="row justify-content-around">
-                    <div class="task-tile col-6 col-md-3 text-center my-5 bg-muted">
-                        <img class="profile-pic col-8 mx-auto" src="{{member.profile_pic}}"
-                            alt="profile picture">
-                        <h5 class="mb-5">{{member.first_name}}</h5>
-                        {% for task in member.tasks %}
-                        <div class="task-row d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
-                            {{task.name}}
-                            <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-user-plus text-dark"></i></a>
-                            <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-check text-success"></i></a>
-                            <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-trash-alt text-danger"></i></a>
+                {% for member in user.home.members.all %}
+                    {% if member.id == user.id %}
+                    {% else %}
+                        <div class="task-tile col-6 col-md-3 text-center my-5 bg-muted">
+                            <img class="profile-pic col-4 mx-auto" src="{{member.profile_pic}}"
+                                alt="profile picture">
+                            <h5 class="mb-5">{{member.first_name}}</h5>
+                            {% for task in member.tasks %}
+                            <div class="task-row d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
+                                {{task.name}}
+                                <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-user-plus text-dark"></i></a>
+                                <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-check text-success"></i></a>
+                                <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-trash-alt text-danger"></i></a>
+                            </div>
+                            {% endfor %}
                         </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                {% endif %}
-            {% endfor %}
+
+                    {% endif %}
+                {% endfor %}
+            </div>
 
         <script src="{% static 'login_reg/js/jquery.min.js' %}"></script>
         <script src="{% static 'login_reg/js/jquery-ui.min.js' %}"></script>

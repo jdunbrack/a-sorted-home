@@ -3,8 +3,12 @@
     padding: 20px 20px;
 }
 
+.profile-pic {
+    border-radius: 50%;
+}
+
 .task-tile {
-    border-radius: 15%;
+    border-radius: 20px;
 }
 
 .main-tile {

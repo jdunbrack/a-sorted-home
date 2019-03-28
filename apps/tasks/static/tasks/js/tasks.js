@@ -7,7 +7,9 @@ $('.task-row').draggable({
     revert: 'invalid',
     scroll: true,
     scrollSensitivity: 50,
-})
+});
+
+$('.profile-pic').draggable('cancel');
 
 $('.task-tile').droppable({
     tolerance: "pointer"
@@ -16,4 +18,4 @@ $('.task-tile').droppable({
 $('.task-tile').on("drop", function(event, ui) {
     // ui = object, contains ['draggable'], the element being dropped
 
-})
+});
