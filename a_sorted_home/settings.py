@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'apps.user_dash',
     'apps.login_reg',
     'apps.balances',
+    'apps.tasks',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^login/', include('apps.login_reg.urls')),
     url(r'^users/', include('apps.user_dash.urls')),
     url(r'^balances/', include('apps.balances.urls')),
+    url(r'^tasks/', include('apps.tasks.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^', include('apps.login_reg.urls')),
 ]
