@@ -1,0 +1,16 @@
+.ui-droppable-hover {
+    background-color: #086D94;
+    padding: 20px 20px;
+}
+
+.task-tile {
+    border-radius: 15%;
+}
+
+.main-tile {
+    background-color: gray;
+}
+
+.task-tile a {
+    margin: 0px 10px;
+}

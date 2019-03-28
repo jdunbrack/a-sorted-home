@@ -1,14 +1,125 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <script src="main.js"></script>
-</head>
-<body>
-    
-</body>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <title>a Sorted Home - Task Tracker</title>
+        <link rel="stylesheet" href="{% static 'login_reg/css/main.css' %}">
+        <link rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'user_dash/css/navbar.css' %}">
+        <link rel="stylesheet" href="{% static 'tasks/css/tasks.css' %}">
+        </head>
+        
+        <body>
+            <div class="d-block mb-4 bg-dark"> <!-- top header container -->
+                <img id="logo" src="{% static 'login_reg/img/asortedhome.svg' %}">
+            </div>
+            <div id="sidenav" class="sidenav"> <!-- side nav bar container -->
+                <a href="#" class="d-block text-right closebtn navbar-toggler pr-3"
+                    id="closeNav"><i
+                        class="ml-auto fas fa-minus-square ash-light"></i></a>
+                <a class="navlink" href="/users/dash">Dashboard</a>
+                <a class="navlink" href="/balances/">Balances</a>
+                <a class="navlink" href="/tasks/">Tasks</a>
+                <a class="navlink" href="/chat/">Chat</a>
+                <a class="navlink" id="logout" href="/login/logout">Log Out</a>
+                <a class="navlink" href="/corkboard/">Corkboard</a>
+            </div>
+            <div id="nav-tab" class="position-fixed"> <!-- nav show button -->
+                <a href="#" class="openbtn navbar-toggler" id="openNav"><i
+                        class="fas fa-plus-square ash-light"></i></a>
+            </div>
+        
+            <div class="modal" tabindex="-1" role="dialog" id="addTaskModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-group" action="/tasks/create" method="post">
+                                {% csrf_token %}
+                                <label for="task-name">Task's Name:</label>
+                                <input class="form-control col-8" id="task-name" type="text" name="name" placeholder="Walk Dog">
+                                <label for="task-desc">Decsription:</label><span class="small text-muted">(Max 255 Characters)</span>
+                                <textarea class="form-control col-12" id="task-desc" name="desc"></textarea> 
+                                <input type="submit" value="Add Task">
+                            </form> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="text-center">Task Tracker</h2>
+            <p><a href="#" id="add-task" data-toggle="modal"
+                    data-target="#addTaskModal">Add a new task</a></p>
+
+            <div class="main-tile task-tile col-6 col-md-3 mx-auto text-center my-5">
+                {% if user.home %}
+                    <h5>{{user.home.name}}</h5>
+                    <p class="text-light">This group has {{user.home.all_tasks|length}} general tasks.</p>
+                    {% for task in tasks %}
+                        <div class="d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
+                            {{task.name}}
+                            <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-user-plus text-dark"></i></a>
+                            <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-check text-success"></i></a>
+                            <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-trash-alt text-danger"></i></a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h5>You don't have a home group!</h5>
+                    <p>
+                        In order for tasks to be saved, you must create or join a home group.
+                        Please feel free to try out the applet for now.
+                    </p>
+                {% endif %}
+            </div>
+
+            <div class="row justify-content-around">
+                <div class="task-tile col-6 col-md-3 text-center my-5 bg-muted">
+                    <img class="profile-pic col-8 mx-auto" src="{{user.profile_pic}}" alt="profile picture">
+                    <h5 class="mb-5">{{user.first_name}}</h5>
+                    {% for task in user.tasks %}
+                        <div class="task-row d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
+                            {{task.name}}
+                            <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-user-plus text-dark"></i></a>
+                            <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-check text-success"></i></a>
+                            <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-trash-alt text-danger"></i></a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% for member in user.home.members.all %}
+                {% if member.id == user.id %}
+                {% else %}
+                <div class="row justify-content-around">
+                    <div class="task-tile col-6 col-md-3 text-center my-5 bg-muted">
+                        <img class="profile-pic col-8 mx-auto" src="{{member.profile_pic}}"
+                            alt="profile picture">
+                        <h5 class="mb-5">{{member.first_name}}</h5>
+                        {% for task in member.tasks %}
+                        <div class="task-row d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
+                            {{task.name}}
+                            <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-user-plus text-dark"></i></a>
+                            <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-check text-success"></i></a>
+                            <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-trash-alt text-danger"></i></a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+
+        <script src="{% static 'login_reg/js/jquery.min.js' %}"></script>
+        <script src="{% static 'login_reg/js/jquery-ui.min.js' %}"></script>
+        <script src="{% static 'user_dash/js/navbar.js' %}"></script>
+        <script src="{% static 'login_reg/js/bootstrap.bundle.min.js' %}"></script>
+        <script src="{% static 'tasks/js/tasks.js' %}"></script>
+    </body>
 </html>

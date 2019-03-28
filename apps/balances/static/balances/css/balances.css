@@ -20,3 +20,7 @@
 input[type=checkbox]:checked + label .small-profile-pic {
     opacity: 1;
 }
+
+input[type=checkbox]:checked + label {
+    font-weight: bold;
+}

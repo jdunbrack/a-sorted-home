@@ -50,7 +50,7 @@
                                 <p class="d-block mb-5 text-muted">Select the other members that will chip in:</p>
                                 {% for member in home_members %}
                                     <input type="checkbox" class="form-control hide-me" id="checkbox{{member.id}}" name="splits" value="{{member.id}}" {% if home_members|length == 1 %}selected{% endif %}>
-                                    <label for="checkbox{{member.id}}"><img class="small-profile-pic" src="{{member.profile_pic}}">{{member.first_name}} {{member.last_name}}</label>
+                                    <label for="checkbox{{member.id}}"><img class="small-profile-pic mx-2" src="{{member.profile_pic}}">{{member.first_name}} {{member.last_name}}</label>
                                 {% endfor %}
                                 <div class="mt-5 form-row">
                                     <div class="col mb-4">
