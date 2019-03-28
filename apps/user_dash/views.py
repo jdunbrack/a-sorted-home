@@ -3,6 +3,7 @@ from .models import *
 from apps.login_reg.models import User, JoinedDate
 from django.conf import settings
 from django.core.files.storage import default_storage
+from django.contrib import messages
 import os
 import bcrypt
 import re
@@ -124,6 +125,34 @@ def pw_validate(request):
         valid = False
 
     return render(request, 'user_dash/new-pw-partial.html', {"valid": valid})
+
+def pw_update(request):
+    if request.method == "GET":
+        return redirect('/users/dash')
+    
+    this_user = User.objects.filter(id=request.session['uid'])
+
+    if len(this_user) != 1:
+        request.session.clear()
+        return redirect('/')
+
+    this_user = this_user[0]
+
+    PW_REGEX = re.compile(r'(?=.*[0-9]+)(?=.*[A-Z]+)(?=.*[a-z]+)')
+
+    pw = request.POST['new-pw']
+
+    if PW_REGEX.match(pw) == None:
+        return redirect('/users/dash/edit')
+    if pw != request.POST['new-pw-confirm']:
+        return redirect('/users/dash/edit')
+
+    user_pw = bcrypt.hashpw(pw.encode(), bcrypt.gensalt())
+
+    this_user.password = user_pw.decode()
+    this_user.save()
+
+    return redirect ('/users/dash')
 
 def edit_payment(request):
     this_user = User.objects.filter(id=request.session['uid'])

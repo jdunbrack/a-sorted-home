@@ -47,7 +47,7 @@ def add_user(request):
 
         if len(request.POST['join-id']) > 0:
             # handle joining existing home
-            new_user.home = Home.objects.get(join_id=request.POST['join-id'])
+            new_user.home.add(Home.objects.get(join_id=request.POST['join-id']))
 
         request.session['uid'] = new_user.id
 

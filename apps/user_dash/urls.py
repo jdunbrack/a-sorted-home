@@ -9,6 +9,7 @@ urlpatterns = [
     url(r'^update$', views.update_user),
     url(r'^check-pw$', views.pw_verify),
     url(r'^validate-pw$', views.pw_validate),
+    url(r'^change-pw$', views.pw_update),
     url(r'^dash/edit-payment$', views.edit_payment),
     url(r'^home/create$', views.create_home),
     url(r'^home/join$', views.join_home),
