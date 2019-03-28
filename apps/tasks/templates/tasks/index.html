@@ -84,7 +84,7 @@
                 <div class="task-tile col-6 col-md-3 text-center my-5 bg-muted">
                     <img class="profile-pic col-8 mx-auto" src="{{user.profile_pic}}" alt="profile picture">
                     <h5 class="mb-5">{{user.first_name}}</h5>
-                    {% for task in user.tasks %}
+                    {% for task in user.tasks.all %}
                         <div class="task-row d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
                             {{task.name}}
                             <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-user-plus text-dark"></i></a>
@@ -100,7 +100,7 @@
                             <img class="profile-pic col-4 mx-auto" src="{{member.profile_pic}}"
                                 alt="profile picture">
                             <h5 class="mb-5">{{member.first_name}}</h5>
-                            {% for task in member.tasks %}
+                            {% for task in member.tasks.all %}
                             <div class="task-row d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
                                 {{task.name}}
                                 <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-user-plus text-dark"></i></a>
