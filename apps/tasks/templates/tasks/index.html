@@ -62,7 +62,7 @@
             <div class="main-tile task-tile col-6 col-md-3 mx-auto text-center my-5">
                 {% if user.home %}
                     <h5>{{user.home.name}}</h5>
-                    <p class="text-light">This group has {{user.home.all_tasks|length}} general tasks.</p>
+                    <p class="text-secondary">This group has {{user.home.all_tasks|length}} general tasks.</p>
                     {% for task in tasks %}
                         <div class="d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
                             {{task.name}}
@@ -81,7 +81,7 @@
             </div>
 
             <div class="row justify-content-around">
-                <div class="task-tile col-6 col-md-3 text-center my-5 bg-muted">
+                <div class="task-tile col-6 col-md-3 text-center my-5 mx-5 bg-muted">
                     <img class="profile-pic col-8 mx-auto" src="{{user.profile_pic}}" alt="profile picture">
                     <h5 class="mb-5">{{user.first_name}}</h5>
                     {% for task in user.tasks.all %}
@@ -96,7 +96,7 @@
                 {% for member in user.home.members.all %}
                     {% if member.id == user.id %}
                     {% else %}
-                        <div class="task-tile col-6 col-md-3 text-center my-5 bg-muted">
+                        <div class="task-tile col-6 col-md-3 text-center my-5 mx-5 bg-muted">
                             <img class="profile-pic col-4 mx-auto" src="{{member.profile_pic}}"
                                 alt="profile picture">
                             <h5 class="mb-5">{{member.first_name}}</h5>
