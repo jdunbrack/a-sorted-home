@@ -54,7 +54,7 @@
             <img class="divider col-12" src="{% static 'login_reg/img/divider.jpg' %}">
             <form id="pw-update" class="ml-4 form-group" action="/users/change-pw" method="post">
                 {% csrf_token %}
-                To update your password, please enter your current password followed by your new password twice.
+                <p>To update your password, please enter your current password followed by your new password twice.</p>
                 Current Password: <input id="pw-2" class="form-control mb-4 col-6" type="password" name="current-pw">
                 <div id="pw2-warn"></div>
                 New Password: <input id="new-pw" class="form-control mb-2 col-6" type="password" name="new-pw">
