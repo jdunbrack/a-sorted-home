@@ -57,7 +57,7 @@
                             <tbody>
                                 {% for member in this_home.members.all %}
                                 <tr>
-                                    <td><img class="small-profile-pic" src="{{member.profile_pic}}">{{member.first_name}}</td>
+                                    <td><img class="small-profile-pic mr-2" src="{{member.profile_pic}}">{{member.first_name}}</td>
                                     <td>{{member.joined_date.created_at}}</td>
                                 </tr>
                                 {% endfor %}
