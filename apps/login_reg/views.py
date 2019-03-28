@@ -9,7 +9,7 @@ def landing(request):
     
 def email_verify(request):
     if request.method == "GET":
-        return redirect('/login')
+        return redirect('/login/')
 
     data = User.objects.filter(email=request.POST['email'])
 
@@ -20,7 +20,7 @@ def email_verify(request):
 
 def pw_verify(request):
     if request.method == "GET":
-        return redirect('/login')
+        return redirect('/login/')
 
     PW_REGEX = re.compile(r'(?=.*[0-9]+)(?=.*[A-Z]+)(?=.*[a-z]+)')
 
@@ -37,7 +37,7 @@ def pw_verify(request):
 
 def add_user(request):
     if request.method == "GET":
-        return redirect('/login')
+        return redirect('/login/')
 
     if request.POST['login_reg'] == "register":
         user_pw = bcrypt.hashpw(request.POST['pw-entry'].encode(), bcrypt.gensalt())

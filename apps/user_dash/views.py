@@ -13,7 +13,7 @@ import string
 
 def index(request):
     if not 'uid' in request.session:
-        return redirect('/login')
+        return redirect('/login/')
     
     this_user = User.objects.filter(id=request.session['uid'])
 
@@ -262,4 +262,5 @@ def remove_member(request, user_id):
 
     return redirect('/users/dash')
 
-    
+def base_redir(request);
+    return redirect('/users/dash') 

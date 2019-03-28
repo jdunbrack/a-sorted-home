@@ -1,5 +1,4 @@
 from django.shortcuts import redirect, render
-
 from ..login_reg.models import User
 from ..user_dash.models import Home
 from .models import Transaction
@@ -16,7 +15,7 @@ def index(request):
 
 def post(request):
     if request.method == "GET":
-        return redirect('/balances')
+        return redirect('/balances/')
 
     this_user = User.objects.get(id=request.session['uid'])
 
@@ -28,7 +27,7 @@ def post(request):
         Transaction.objects.create(payor=this_user, payee=User.objects.get(id=user_id),\
             amount=amount, store=request.POST['store'], description=request.POST['notes'])
 
-    return redirect('/balances')
+    return redirect('/balances/')
 
 def get_transactions(request, user_id):
     this_user = User.objects.get(id=request.session['uid'])
@@ -58,11 +57,11 @@ def all_paid(request, user_id):
     for transaction in transactions:
         transaction.delete()
     
-    return redirect('/balances')
+    return redirect('/balances/')
 
 def remove_txn(request, txn_id):
     this_txn = Transaction.objects.get(id=txn_id)
     if request.session['uid'] == this_txn.payor.id or request.session['uid'] == this_txn.payee.id:
         this_txn.delete()
 
-    return redirect('/balances')
+    return redirect('/balances/')
