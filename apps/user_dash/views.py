@@ -262,5 +262,5 @@ def remove_member(request, user_id):
 
     return redirect('/users/dash')
 
-def base_redir(request);
+def base_redir(request):
     return redirect('/users/dash') 
