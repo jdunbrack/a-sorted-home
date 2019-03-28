@@ -11,7 +11,8 @@
 
 .task-tile {
     border-radius: 40px;
-    min-height: 300px;
+    min-height: 200px;
+    padding: 10px;
 }
 
 .main-tile {
@@ -19,5 +20,5 @@
 }
 
 .task-tile a {
-    margin: 0px 10px;
+    margin: 0px 5px;
 }
