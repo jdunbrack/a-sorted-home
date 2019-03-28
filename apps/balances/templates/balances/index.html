@@ -45,7 +45,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <form class="form-group" action="/balances/post/" method="post">
+                            <form class="form-group" action="/balances/post" method="post">
                                 {% csrf_token %}
                                 <p class="d-block mb-5 text-muted">Select users that should chip in for this purchase:</p>
                                 {% for member in home_members %}

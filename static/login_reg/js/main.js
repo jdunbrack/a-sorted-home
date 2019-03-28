@@ -89,11 +89,7 @@ $('#login-btn').click(function(e) {
                 $('#login-warn').text("This username and password combination does not exist.");
             }
             else {
-                $('#loginModal').modal('hide');
-                $('#my-acct-link').show();
-                $('#logout-link').show();
-                $('#login-link').hide();
-                $('#logged_in').attr('value', 'true');
+                window.location.href = "/users/dash";
             }
         }
     })

@@ -6,7 +6,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^dash$', views.index),
     url(r'^dash/edit$', views.edit_user),
-    url(r'^update/$', views.update_user),
+    url(r'^update$', views.update_user),
     url(r'^check-pw$', views.pw_verify),
     url(r'^validate-pw$', views.pw_validate),
     url(r'^dash/edit-payment$', views.edit_payment),
