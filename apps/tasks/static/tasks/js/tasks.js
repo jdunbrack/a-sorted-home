@@ -23,7 +23,7 @@ $(document).ready(function () {
     $('.info-popup').popover({
         trigger: 'hover',
         content: function () {
-            let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + ui.item.attr('data-task-id') + "&receiver=" + $(this).parent('.task-tile').attr('data-user-id');
+            let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent().attr("data-task-id");
             const html_out = ""
             $.ajax({
                 type: "POST",
@@ -38,7 +38,7 @@ $(document).ready(function () {
         html: true
     })
 
-    $('#add-task').click(function (e) {
+    $('#add-task').click(function (e) {1
         e.preventDefault();
         let data = $('#new-task').serialize();
         $.ajax({
@@ -80,7 +80,7 @@ $(document).ready(function () {
 
     $('a[href="/tasks/finish"]').click(function (e) {
         e.preventDefault();
-        let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=5";
+        let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent().attr("data-task-id");
         $.post({
             url: "/tasks/finish",
             data: data
