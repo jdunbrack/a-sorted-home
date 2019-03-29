@@ -20,7 +20,7 @@ def create(request):
     this_user = User.objects.get(id=request.session['uid'])
     this_home = this_user.home
 
-    new_task = Task.object.create(name=request.POST['name'], description=request.POST['desc'], home=this_home)
+    new_task = Task.objects.create(name=request.POST['name'], description=request.POST['desc'], home=this_home)
 
     return render(request, "task-partial.html", { 'task': new_task })
 
