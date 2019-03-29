@@ -24,7 +24,7 @@ $(document).ready(function () {
         trigger: 'hover',
         content: function () {
             let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent().attr("data-task-id");
-            const html_out = ""
+            let html_out = ""
             $.ajax({
                 type: "POST",
                 url: "/tasks/info",
