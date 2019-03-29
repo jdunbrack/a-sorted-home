@@ -34,21 +34,37 @@ $('.task-list').sortable({
 });
 
 $('.task-list').on('sortreceive', function (e, ui) {
-    let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + ui.item.attr('data-task-id') + "&receiver=" + $(this).parent('.task-tile').attr('data-user-id')
-    $.ajax({
-        type: "post",
+    let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + ui.item.attr('data-task-id') + "&receiver=" + $(this).parent('.task-tile').attr('data-user-id');
+    $.post({
         url: "/tasks/assign",
         data: data
     });
 });
 
 $('a[href="/tasks/finish"]').click(function(e) {
-    e.preventDefault()
-    let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id')
-    console.log(data)
+    e.preventDefault();
+    let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id');
     $.post({
         url: "/tasks/finish",
         data: data
     });
-    $(this).parent('.task-row').remove()
+    $(this).parent('.task-row').remove();
 });
+
+$('.info-popup').tooltip({
+    function() {
+        let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id')
+        tooltipHTML = $.post({
+            url: "/tasks/info",
+            data: data,
+            function (data) {
+                taskInfo = JSON.parse(data);
+                output = "<p class='font-weight-bold'>Name: " + taskInfo['name'] + "</p>";
+                output += "<p class='font-weight-bold'>Assigned to: " + taskInfo['worker'] + "</p>";
+                output += "<p class='font-weight-bold'>Description:</p><p class='font-italic'>" + taskInfo['description'] + "</p>";
+                return output;
+            }
+        })
+        return tooltipHTML;
+    }
+})
