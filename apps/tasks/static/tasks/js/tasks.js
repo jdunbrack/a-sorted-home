@@ -3,22 +3,40 @@
 
 
 $(document).ready(function () {
-    $(".info-popup").tooltip({
-        track: true,
-        open: function (event, ui) {
-            console.log("open listener activated");
-            let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=5"
+    // $(".info-popup").tooltip({
+    //     track: true,
+    //     open: function (event, ui) {
+    //         console.log("open listener activated");
+    //         let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=5"
+    //         $.ajax({
+    //             url: '/tasks/info',
+    //             method: 'POST',
+    //             data: data,
+    //             success: function (response) {
+    //                 console.log("ajax returned success")
+    //                 $(this).tooltip('option', 'content', response);
+    //             }
+    //         });
+    //     }
+    // });
+
+    $('.info-popup').popover({
+        trigger: 'hover',
+        content: function () {
+            let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + ui.item.attr('data-task-id') + "&receiver=" + $(this).parent('.task-tile').attr('data-user-id');
+            const html_out = ""
             $.ajax({
-                url: '/tasks/info',
-                method: 'POST',
+                type: "POST",
+                url: "/tasks/info",
                 data: data,
                 success: function (response) {
-                    console.log("ajax returned success")
-                    $(this).tooltip('option', 'content', response);
+                    html_out = response;
                 }
             });
-        }
-    });
+            return html_out;
+        },
+        html: true
+    })
 
     $('#add-task').click(function (e) {
         e.preventDefault();
@@ -71,10 +89,10 @@ $(document).ready(function () {
     });
 
 
-    $(".info-popup").mouseout(function () {
-        // re-initializing tooltip
-        $(this).attr('title', 'Please wait...');
-        $(this).tooltip();
-        $('.ui-tooltip').hide();
-    });
+    // $(".info-popup").mouseout(function () {
+    //     // re-initializing tooltip
+    //     $(this).attr('title', 'Please wait...');
+    //     $(this).tooltip();
+    //     $('.ui-tooltip').hide();
+    // });
 });

@@ -67,7 +67,7 @@
                 <ul class="task-list list-unstyled py-1">
                 {% for task in unassigned_tasks %}
                     <li class="task-row d-inline-block col-10 mx-auto my-1 bg-white" data-task-id="{{task.id}}">
-                        <i class="info-popup fas fa-sm fa-info-circle text-dark" data-task-id="{{task.id}}"></i>
+                        <i class="info-popup fas fa-sm fa-info-circle text-dark" title="{{task.name}}"></i>
                         {{task.name}}
                         <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-share text-dark"></i></a>
                         <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
@@ -85,7 +85,7 @@
                     <ul class="task-list list-unstyled py-1">
                     {% for task in user.tasks.all %}
                         <li class="task-row d-inline-block col-10 mx-auto my-1 bg-white" data-task-id="{{task.id}}">
-                            <i class="info-popup fas fa-sm fa-info-circle text-dark"></i>
+                            <i class="info-popup fas fa-sm fa-info-circle text-dark" title="{{task.name}}"></i>
                             {{task.name}}
                             <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-share text-dark"></i></a>
                             <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
@@ -106,7 +106,7 @@
                             <ul class="task-list list-unstyled py-1">
                             {% for task in member.tasks.all %}
                             <li class="task-row d-inline-block col-10 mx-auto my-1 bg-white" data-task-id="{{task.id}}">
-                                <i class="info-popup fas fa-sm fa-info-circle text-dark"></i>
+                                <i class="info-popup fas fa-sm fa-info-circle text-dark" title="{{task.name}}"></i>
                                 {{task.name}}
                                 <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-share text-dark"></i></a>
                                 <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
@@ -120,13 +120,12 @@
                 {% endfor %}
             </div>
 
+
         <script src="{% static 'login_reg/js/jquery.min.js' %}"></script>
-        <script src="{% static 'user_dash/js/navbar.js' %}"></script>
+        <script src="{% static 'login_reg/js/bootstrap.bundle.min.js' %}"></script>
         <script src="{% static 'login_reg/js/jquery-ui.min.js' %}"></script>
+        <script src="{% static 'user_dash/js/navbar.js' %}"></script>
         <script src="{% static 'tasks/js/tasks.js' %}"></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"></script>
+
     </body>
 </html>
