@@ -61,7 +61,7 @@
                 <!-- main tile -->
             <div class="main-tile task-tile col-6 col-md-4 mx-auto text-center my-5">
                 <h5>{{user.home.name}}</h5>
-                <p class="text-info">This group has {{user.home.all_tasks|length}} general tasks.</p>
+                <p class="text-info">This group has {{user.home.all_tasks.all|length}} general tasks.</p>
                 <img class="col-11 mx-auto" src="{% static 'login_reg/img/divider.png' %}">
                 <ul class="task-list list-unstyled py-1">
                 {% for task in tasks %}
