@@ -22,3 +22,7 @@
 .task-tile a {
     margin: 0px 5px;
 }
+
+.task-row {
+    z-index: 9999;
+}

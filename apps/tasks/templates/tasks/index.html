@@ -20,7 +20,7 @@
             <div id="sidenav" class="sidenav"> <!-- side nav bar container -->
                 <a href="#" class="d-block text-right closebtn navbar-toggler pr-3"
                     id="closeNav"><i
-                        class="ml-auto fas fa-minus-square ash-light"></i></a>
+                        class="ml-auto fas fa-sm fa-minus-square ash-light"></i></a>
                 <a class="navlink" href="/users/dash">Dashboard</a>
                 <a class="navlink" href="/balances/">Balances</a>
                 <a class="navlink" href="/tasks/">Tasks</a>
@@ -30,7 +30,7 @@
             </div>
             <div id="nav-tab" class="position-fixed"> <!-- nav show button -->
                 <a href="#" class="openbtn navbar-toggler" id="openNav"><i
-                        class="fas fa-plus-square ash-light"></i></a>
+                        class="fas fa-sm fa-plus-square ash-light"></i></a>
             </div>
         
             <div class="modal" tabindex="-1" role="dialog" id="addTaskModal">
@@ -63,12 +63,12 @@
                 <h5>{{user.home.name}}</h5>
                 <p class="text-info">This group has {{user.home.all_tasks|length}} general tasks.</p>
                 {% for task in tasks %}
-                    <div class="task-row d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
-                        <a href="#" role="button" alt="task information" id="info-popup"><i class="fas fa-info-circle text-dark"></i></a>
+                    <div class="task-row d-inline-block col-10 border-dark mx-auto bg-light" data-task-id="{{task.id}}">
+                        <a href="#" role="button" alt="task information" id="info-popup"><i class="fas fa-sm fa-info-circle text-dark"></i></a>
                         {{task.name}}
-                        <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-user-plus text-dark"></i></a>
-                        <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-check text-success"></i></a>
-                        <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-trash-alt text-danger"></i></a>
+                        <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-user-plus text-dark"></i></a>
+                        <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
+                        <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-sm fa-trash-alt text-danger"></i></a>
                     </div>
                 {% endfor %}
             </div>
@@ -78,12 +78,12 @@
                     <img class="profile-pic mx-auto" src="{{user.profile_pic}}" alt="profile picture">
                     <h5 class="mb-5">{{user.first_name}}</h5>
                     {% for task in user.tasks.all %}
-                        <div class="task-row d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
-                            <a href="#" role="button" alt="task information" id="info-popup"><i class="fas fa-info-circle text-dark"></i></a>
+                        <div class="task-row d-inline-block col-10 border-dark mx-auto bg-light" data-task-id="{{task.id}}">
+                            <a href="#" role="button" alt="task information" id="info-popup"><i class="fas fa-sm fa-info-circle text-dark"></i></a>
                             {{task.name}}
-                            <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-user-plus text-dark"></i></a>
-                            <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-check text-success"></i></a>
-                            <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-trash-alt text-danger"></i></a>
+                            <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-user-plus text-dark"></i></a>
+                            <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
+                            <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-sm fa-trash-alt text-danger"></i></a>
                         </div>
                     {% endfor %}
                 </div>
@@ -96,11 +96,11 @@
                                 alt="profile picture">
                             <h5 class="mb-5">{{member.first_name}}</h5>
                             {% for task in member.tasks.all %}
-                            <div class="task-row d-inline-block col-10 border-dark mx-auto bg-secondary" data-task-id="{{task.id}}">
+                            <div class="task-row d-inline-block col-10 border-dark mx-auto bg-light" data-task-id="{{task.id}}">
                                 {{task.name}}
-                                <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-user-plus text-dark"></i></a>
-                                <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-check text-success"></i></a>
-                                <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-trash-alt text-danger"></i></a>
+                                <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-user-plus text-dark"></i></a>
+                                <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
+                                <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-sm fa-trash-alt text-danger"></i></a>
                             </div>
                             {% endfor %}
                         </div>

@@ -1,6 +1,6 @@
 // remember on ui-droppable-hover to increase height and/or width slightly.
 // jquery .addClass will animate.
-/*
+
 $('#add-task').click(function(e) {
     e.preventDefault();
     let data = $('#new-task').serialize();
@@ -20,7 +20,7 @@ $('#add-task').click(function(e) {
         }
     });
 });
-*/
+
 $('.task-row').draggable({
     cursor: 'move',
     opacity: .7,
