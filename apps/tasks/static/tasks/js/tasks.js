@@ -20,29 +20,34 @@ $(document).ready(function () {
     //     }
     // });
 
-    $('.info-popup').popover({
-        trigger: 'hover',
-        content: function () {
-            let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent().attr("data-task-id");
-            let html_out = ""
-            $.ajax({
-                type: "POST",
-                url: "/tasks/info",
-                data: data,
-                success: function (response) {
-                    html_out = response;
-                    popoverInit();
-                }
-            });
-            return html_out;
-        },
-        html: true
-    })
+
 
     function popoverInit() {
-        $(".info-popup").popover();
-    }
+        $('.info-popup').popover({
+            trigger: 'hover',
+            open: function () {
+                let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent().attr("data-task-id");
+                let html_out = ""
+                $.ajax({
+                    type: "POST",
+                    url: "/tasks/info",
+                    data: data,
+                    success: function (response) {
+                        html_out = response;
+                        popoverInit();
+                    }
+                });
+                $(this).popover({
+                    content: html_out
+                });
+            },
+            html: true
+        })
+    };
 
+    $(document).ajaxComplete(function () {
+        popoverInit();
+    });
     popoverInit();
 
     $('#add-task').click(function (e) {1
