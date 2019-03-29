@@ -26,3 +26,7 @@
 .task-row {
     z-index: 9999;
 }
+
+.task-list {
+    min-height: 100px;
+}
