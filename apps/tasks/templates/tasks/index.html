@@ -2,6 +2,7 @@
 <html>
     <head>
         {% load static %}
+        {% csrf_token %}
         <meta charset="utf-8">
         <title>a Sorted Home - Task Tracker</title>
         <link rel="stylesheet" href="{% static 'login_reg/css/main.css' %}">
@@ -121,7 +122,6 @@
 
         <script src="{% static 'login_reg/js/jquery.min.js' %}"></script>
         <script src="{% static 'user_dash/js/navbar.js' %}"></script>
-        <!-- <script src="{% static 'login_reg/js/bootstrap.bundle.min.js' %}"></script> -->
         <script src="{% static 'login_reg/js/jquery-ui.min.js' %}"></script>
         <script src="{% static 'tasks/js/tasks.js' %}"></script>
     </body>
