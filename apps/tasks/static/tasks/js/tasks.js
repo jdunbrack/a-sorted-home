@@ -50,4 +50,5 @@ $('a[href="/tasks/finish"]').click(function(e) {
         url: "/tasks/finish",
         data: data
     });
+    $(this).parent('.task-row').remove()
 });
