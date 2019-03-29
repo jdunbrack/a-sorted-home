@@ -1,6 +1,6 @@
 <li class="task-row my-1 d-inline-block col-10 mx-auto bg-white my-1"
     data-task-id="{{task.id}}">
-    <i class="info-popup fas fa-sm fa-info-circle text-dark" title="{{task.name}}"></i>
+    <i class="info-popup fas fa-sm fa-info-circle text-dark" title="{{task.name}}" data-poload="/tasks/info/{{task.id}}"></i>
     {{task.name}}
     <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-share text-dark"></i></a>
     <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
