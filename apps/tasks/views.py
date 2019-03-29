@@ -51,5 +51,5 @@ def get_info(request):
         "name": task.name,
         "worker": task.worker,
         "description": task.description
-    }
+    })
     return HttpResponse(json_out, content_type="application/json")
