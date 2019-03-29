@@ -52,6 +52,8 @@ $(document).ready(function () {
         });
     }
 
+    popoverInit();
+
     $('#add-task').click(function (e) {1
         e.preventDefault();
         let data = $('#new-task').serialize();
@@ -62,6 +64,8 @@ $(document).ready(function () {
             success: function (response) {
                 $('.main-tile .task-list').append(response)
                 $('#close-modal').trigger('click');
+            },
+            complete: function () {
                 popoverInit();
             }
         });
