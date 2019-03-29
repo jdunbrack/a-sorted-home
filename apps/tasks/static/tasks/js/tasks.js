@@ -69,7 +69,7 @@ $(document).ready(function () {
         }
     });
 
-    $(".selector").on("tooltipopen", function (event, ui) {
+    $(".info-popup").on("tooltipopen", function (event, ui) {
         console.log("open listener triggered");
         let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id');
         $.ajax({
