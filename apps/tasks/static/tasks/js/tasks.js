@@ -51,27 +51,28 @@ $('a[href="/tasks/finish"]').click(function(e) {
     $(this).parent('.task-row').remove();
 });
 
-// initialize tooltip
-$(".info-popup").tooltip({
-    track: true,
-    open: function (event, ui) {
-        console.log("open listener activated");
-        let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id');
-        $.ajax({
-            url: '/tasks/info',
-            type: 'post',
-            data: data,
-            success: function (response) {
-                console.log("ajax returned success")
-                $(this).tooltip('option', 'content', response);
-            }
-        });
-    }
-});
+$(document).ready(function () {
+    $(".info-popup").tooltip({
+        track: true,
+        open: function (event, ui) {
+            console.log("open listener activated");
+            let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id');
+            $.ajax({
+                url: '/tasks/info',
+                type: 'post',
+                data: data,
+                success: function (response) {
+                    console.log("ajax returned success")
+                    $(this).tooltip('option', 'content', response);
+                }
+            });
+        }
+    });
 
-$(".info-popup").mouseout(function () {
-    // re-initializing tooltip
-    $(this).attr('title', 'Please wait...');
-    $(this).tooltip();
-    $('.ui-tooltip').hide();
+    $(".info-popup").mouseout(function () {
+        // re-initializing tooltip
+        $(this).attr('title', 'Please wait...');
+        $(this).tooltip();
+        $('.ui-tooltip').hide();
+    });
 });
