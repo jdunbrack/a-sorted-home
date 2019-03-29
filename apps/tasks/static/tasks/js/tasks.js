@@ -41,6 +41,7 @@ $(document).ready(function () {
         e.off('hover');
         $.get(e.data('poload'), function (d) {
             e.popover({
+                html: true,
                 content: d
             }).popover('show');
         });
