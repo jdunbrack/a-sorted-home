@@ -22,7 +22,7 @@ def create(request):
 
     new_task = Task.objects.create(name=request.POST['name'], description=request.POST['desc'], home=this_home)
 
-    return render(request, "task-partial.html", { 'task': new_task })
+    return render(request, "tasks/task-partial.html", { 'task': new_task })
 
 def assign(request):
     pass # only add to db if home exists
