@@ -34,7 +34,14 @@ $('.task-list').sortable({
 });
 
 $('.task-list').on('sortreceive', function (e, ui) {
-    let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + ui.item.attr('data-task-id') + "&receiver=" + $(this).attr('data-user-id')
-    console.log(data)
+    let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + ui.item.attr('data-task-id') + "&receiver=" + $(this).parent('.task-tile').attr('data-user-id')
+    $.ajax({
+        type: "post",
+        url: "/tasks/assign",
+        data: data,
+        success: function (response) {
+            console.log(response)
+        }
+    });
 });
 

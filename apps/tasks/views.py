@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, HttpResponse
 from .models import *
 
 def index(request):
@@ -25,7 +25,14 @@ def create(request):
     return render(request, "tasks/task-partial.html", { 'task': new_task })
 
 def assign(request):
-    pass # only add to db if home exists
+    if request.method == "GET":
+        return redirect('/tasks/')
+
+    this_task = Task.objects.get(id=request.POST['task-id'])
+    this_task.worker = User.objects.get(id=request.POST['receiver'])
+    this_task.save()
+    
+    return HttpResponse("query success")
 
 def finish(request):
     pass
