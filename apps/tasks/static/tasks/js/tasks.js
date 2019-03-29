@@ -30,6 +30,9 @@ $(document).ready(function () {
                 url: "/tasks/info",
                 data: data,
                 success: function (response) {
+                    $(this).popover({
+                        content: response
+                    }).popover('show')
                     html_out = response;
                 }
             });
