@@ -1,6 +1,5 @@
-.ui-droppable-hover {
-    background-color: #086D94;
-    padding: 20px 20px;
+#modal {
+    z-index: 2000;
 }
 
 .profile-pic {
@@ -24,7 +23,7 @@
 }
 
 .task-row {
-    z-index: 9999;
+    z-index: 1001;
 }
 
 .task-list {

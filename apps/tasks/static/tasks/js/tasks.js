@@ -21,7 +21,7 @@ $('.task-list').sortable({
     opacity: 0.5,
     revert: true,
     tolerance: 'intersect',
-    zIndex: 10000,
+    zIndex: 1002,
     connectWith: '.task-list',
     placeholder: "task-placeholder",
     forcePlaceholderSize: true,
