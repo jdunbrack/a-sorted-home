@@ -36,23 +36,21 @@ $(document).ready(function () {
     //     html: true
     // });
 
-    function popoverInit () {
-        $('*[data-poload]').hover(function () {
-            var e = $(this);
-            e.off('hover');
-            $.get(e.data('poload'), function (d) {
-                e.popover({
-                    html: true,
-                    placement: 'top',
-                    content: d
-                }).popover('show');
-            });
-        }, function() {
-            $(this).popover('hide');
-        });
-    }
 
-    popoverInit();
+    $('*[data-poload]').hover(function () {
+        var e = $(this);
+        e.off('hover');
+        $.get(e.data('poload'), function (d) {
+            e.popover({
+                html: true,
+                placement: 'top',
+                content: d
+            }).popover('show');
+        });
+    }, function() {
+        $(this).popover('hide');
+    });
+
 
     $('#add-task').click(function (e) {1
         e.preventDefault();
@@ -66,7 +64,19 @@ $(document).ready(function () {
                 $('#close-modal').trigger('click');
             },
             complete: function () {
-                popoverInit();
+                $('*[data-poload]').hover(function () {
+                    var e = $(this);
+                    e.off('hover');
+                    $.get(e.data('poload'), function (d) {
+                        e.popover({
+                            html: true,
+                            placement: 'top',
+                            content: d
+                        }).popover('show');
+                    });
+                }, function () {
+                    $(this).popover('hide');
+                });            
             }
         });
     });
