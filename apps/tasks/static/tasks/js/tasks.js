@@ -33,7 +33,7 @@ $('.task-list').sortable({
     }
 });
 
-$('.task-list').receive(function (e, ui) {
+$('.task-list').on('sortreceive', function (e, ui) {
     let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + ui.item.attr('data-task-id') + "&receiver=" + $(this).attr('data-user-id')
     console.log(data)
 });
