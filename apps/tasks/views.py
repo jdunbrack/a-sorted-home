@@ -48,7 +48,7 @@ def finish(request):
 def get_info(request):
     if request.method == "GET":
         return redirect('/tasks/')
-        
+
     this_task = Task.objects.get(id=request.POST['task-id'])
     
-    return render(request, "info-partial.html", {'task': this_task})
+    return render(request, "tasks/info-partial.html", {'task': this_task})
