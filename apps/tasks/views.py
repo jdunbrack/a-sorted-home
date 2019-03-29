@@ -31,7 +31,10 @@ def assign(request):
         return redirect('/tasks/')
 
     this_task = Task.objects.get(id=request.POST['task-id'])
-    this_task.worker = User.objects.get(id=request.POST['receiver'])
+    if request.POST['receiver'] > 0:
+        this_task.worker = User.objects.get(id=request.POST['receiver'])
+    else:
+        this_task.worker = None
     this_task.save()
     
     return redirect('/tasks/')
