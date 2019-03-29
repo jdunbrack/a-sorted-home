@@ -30,16 +30,20 @@ $(document).ready(function () {
                 url: "/tasks/info",
                 data: data,
                 success: function (response) {
-                    $(this).popover({
-                        content: response
-                    }).popover('show')
                     html_out = response;
+                    popoverInit();
                 }
             });
             return html_out;
         },
         html: true
     })
+
+    function popoverInit() {
+        $(".info-popup").popover();
+    }
+
+    popoverInit();
 
     $('#add-task').click(function (e) {1
         e.preventDefault();
