@@ -55,12 +55,14 @@ $('a[href="/tasks/finish"]').click(function(e) {
 $(".info-popup").tooltip({
     track: true,
     open: function (event, ui) {
+        console.log("open listener activated");
         let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id');
         $.ajax({
             url: '/tasks/info',
             type: 'post',
             data: data,
             success: function (response) {
+                console.log("ajax returned success")
                 $(this).tooltip('option', 'content', response);
             }
         });
