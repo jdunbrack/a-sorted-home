@@ -42,10 +42,11 @@ $(document).ready(function () {
         $.get(e.data('poload'), function (d) {
             e.popover({
                 html: true,
-                trigger: 'hover',
                 content: d
             }).popover('show');
         });
+    }, function() {
+        $(this).popover('hide');
     });
 
     $('#add-task').click(function (e) {1
