@@ -56,10 +56,10 @@ $(document).ready(function () {
         track: true,
         open: function (event, ui) {
             console.log("open listener activated");
-            let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parents('.task-row').attr('data-task-id');
+            let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=5"
             $.ajax({
                 url: '/tasks/info',
-                type: 'post',
+                method: 'POST',
                 data: data,
                 success: function (response) {
                     console.log("ajax returned success")
