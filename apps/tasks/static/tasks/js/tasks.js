@@ -117,6 +117,7 @@ $(document).ready(function () {
             data: data
         });
         $(this).parent('.task-row').remove();
+        $('#unassigned-count').text("This group has " + $('.main-tile').find('li').length + " general tasks.")
     });
 
 
