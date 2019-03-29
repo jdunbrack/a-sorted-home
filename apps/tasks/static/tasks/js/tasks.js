@@ -76,7 +76,8 @@ $(document).ready(function () {
                     });
                 }, function () {
                     $(this).popover('hide');
-                });            
+                });
+                $('#unassigned-count').text("This group has " + $('.main-tile').find('li').length + " general tasks.")
             }
         });
     });
@@ -105,6 +106,7 @@ $(document).ready(function () {
             url: "/tasks/assign",
             data: data
         });
+        $('#unassigned-count').text("This group has " + $('.main-tile').find('li').length + " general tasks.")
     });
 
     $('a[href="/tasks/finish"]').click(function (e) {
