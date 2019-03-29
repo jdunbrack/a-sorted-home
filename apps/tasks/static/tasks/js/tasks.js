@@ -9,15 +9,7 @@ $('#add-task').click(function(e) {
         url: "/tasks/create",
         data: data,
         success: function (response) {
-            $('.main-tile').append(response)
-            $('.task-row').draggable({
-                cursor: 'move',
-                opacity: .7,
-                revert: 'invalid',
-                scroll: true,
-                scrollSensitivity: 50,
-                connectToSortable: '.task-list'
-            });
+            $('.main-tile .task-list').append(response)
         }
     });
 });
@@ -32,21 +24,3 @@ $('.task-list').sortable({
     connectWith: '.task-list'
 })
 
-$('.task-row').draggable({
-    cursor: 'move',
-    opacity: .7,
-    revert: 'invalid',
-    scroll: true,
-    scrollSensitivity: 50,
-    connectToSortable: '.task-list'
-});
-
-$('.task-tile').droppable({
-    tolerance: "pointer"
-});
-
-$('.task-tile').on("drop", function(event, ui) {
-    // ui = object, contains ['draggable'], the element being dropped
-    // add ajax to change owner of task based on tile dropped
-
-});
