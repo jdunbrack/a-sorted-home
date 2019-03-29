@@ -51,20 +51,25 @@ $('a[href="/tasks/finish"]').click(function(e) {
     $(this).parent('.task-row').remove();
 });
 
-$('.info-popup').tooltip({
-    function() {
-        let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id')
-        tooltipHTML = $.post({
-            url: "/tasks/info",
+// initialize tooltip
+$(".info-popup").tooltip({
+    track: true,
+    open: function (event, ui) {
+        let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id');
+        $.ajax({
+            url: '/tasks/info',
+            type: 'post',
             data: data,
-            function (data) {
-                taskInfo = JSON.parse(data);
-                output = "<p class='font-weight-bold'>Name: " + taskInfo['name'] + "</p>";
-                output += "<p class='font-weight-bold'>Assigned to: " + taskInfo['worker'] + "</p>";
-                output += "<p class='font-weight-bold'>Description:</p><p class='font-italic'>" + taskInfo['description'] + "</p>";
-                return output;
+            success: function (response) {
+                $(this).tooltip('option', 'content', response);
             }
-        })
-        return tooltipHTML;
+        });
     }
-})
+});
+
+$(".info-popup").mouseout(function () {
+    // re-initializing tooltip
+    $(this).attr('title', 'Please wait...');
+    $(this).tooltip();
+    $('.ui-tooltip').hide();
+});

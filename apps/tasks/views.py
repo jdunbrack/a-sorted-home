@@ -47,9 +47,5 @@ def finish(request):
 
 def get_info(request):
     task = Task.objects.get(id=request.POST['task-id'])
-    json_out = json.dumps({
-        "name": task.name,
-        "worker": task.worker,
-        "description": task.description
-    })
-    return HttpResponse(json_out, content_type="application/json")
+    
+    return render(request, "info-partial.html", {'task': task})
