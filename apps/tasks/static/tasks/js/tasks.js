@@ -20,10 +20,16 @@ $('.task-list').sortable({
     items: '> li',
     opacity: 0.5,
     revert: true,
-    tolerance: 'pointer',
+    tolerance: 'intersect',
     zIndex: 10000,
     connectWith: '.task-list',
     placeholder: "task-placeholder",
-    forcePlaceholderSize: true
+    forcePlaceholderSize: true,
+    activate: function () {
+        $('.task-list').addClass('border');
+    },
+    deactivate: function () {
+        $('.task-list').removeClass('border');
+    }
 });
 
