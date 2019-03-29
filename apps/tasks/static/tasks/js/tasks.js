@@ -16,10 +16,21 @@ $('#add-task').click(function(e) {
                 revert: 'invalid',
                 scroll: true,
                 scrollSensitivity: 50,
+                connectToSortable: '.task-list'
             });
         }
     });
 });
+
+$('.task-list').sortable({
+    cursor: 'move',
+    items: '> li',
+    opacity: 0.5,
+    revert: true,
+    tolerance: 'pointer',
+    zIndex: 10000,
+    connectWith: '.task-list'
+})
 
 $('.task-row').draggable({
     cursor: 'move',
@@ -27,6 +38,7 @@ $('.task-row').draggable({
     revert: 'invalid',
     scroll: true,
     scrollSensitivity: 50,
+    connectToSortable: '.task-list'
 });
 
 $('.task-tile').droppable({

@@ -62,30 +62,34 @@
             <div class="main-tile task-tile col-6 col-md-4 mx-auto text-center my-5">
                 <h5>{{user.home.name}}</h5>
                 <p class="text-info">This group has {{user.home.all_tasks|length}} general tasks.</p>
+                <ul class="task-list list-unstyled">
                 {% for task in tasks %}
-                    <div class="task-row d-inline-block col-10 border-dark mx-auto bg-light" data-task-id="{{task.id}}">
+                    <li class="task-row d-inline-block col-10 mx-auto bg-light" data-task-id="{{task.id}}">
                         <a href="#" role="button" alt="task information" id="info-popup"><i class="fas fa-sm fa-info-circle text-dark"></i></a>
                         {{task.name}}
                         <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-user-plus text-dark"></i></a>
                         <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
                         <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-sm fa-trash-alt text-danger"></i></a>
-                    </div>
+                    </li>
                 {% endfor %}
+                </ul>
             </div>
                 <!-- user tile -->
             <div class="row justify-content-around">
                 <div class="task-tile col-10 col-md-5 text-center my-5 mx-1 bg-muted" data-user-id="{{user.id}}">
                     <img class="profile-pic mx-auto" src="{{user.profile_pic}}" alt="profile picture">
                     <h5 class="mb-5">{{user.first_name}}</h5>
+                    <ul class="task-list list-unstyled">
                     {% for task in user.tasks.all %}
-                        <div class="task-row d-inline-block col-10 border-dark mx-auto bg-light" data-task-id="{{task.id}}">
+                        <li class="task-row d-inline-block col-10 mx-auto bg-light" data-task-id="{{task.id}}">
                             <a href="#" role="button" alt="task information" id="info-popup"><i class="fas fa-sm fa-info-circle text-dark"></i></a>
                             {{task.name}}
                             <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-user-plus text-dark"></i></a>
                             <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
                             <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-sm fa-trash-alt text-danger"></i></a>
-                        </div>
+                        </li>
                     {% endfor %}
+                    </ul>
                 </div>
                 {% for member in user.home.members.all %}
                     {% if member.id == user.id %}
@@ -95,14 +99,17 @@
                             <img class="profile-pic mx-auto" src="{{member.profile_pic}}"
                                 alt="profile picture">
                             <h5 class="mb-5">{{member.first_name}}</h5>
+                            <ul class="task-list list-unstyled">
                             {% for task in member.tasks.all %}
-                            <div class="task-row d-inline-block col-10 border-dark mx-auto bg-light" data-task-id="{{task.id}}">
+                            <li class="task-row d-inline-block col-10 mx-auto bg-light" data-task-id="{{task.id}}">
+                                <a href="#" role="button" alt="task information" id="info-popup"><i class="fas fa-sm fa-info-circle text-dark"></i></a>
                                 {{task.name}}
                                 <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-user-plus text-dark"></i></a>
                                 <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
                                 <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-sm fa-trash-alt text-danger"></i></a>
-                            </div>
+                            </li>
                             {% endfor %}
+                            </ul>
                         </div>
 
                     {% endif %}
