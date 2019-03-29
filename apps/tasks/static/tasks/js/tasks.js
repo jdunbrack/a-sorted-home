@@ -69,6 +69,20 @@ $(document).ready(function () {
         }
     });
 
+    $(".selector").on("tooltipopen", function (event, ui) {
+        console.log("open listener triggered");
+        let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id');
+        $.ajax({
+            url: '/tasks/info',
+            type: 'post',
+            data: data,
+            success: function (response) {
+                console.log("ajax returned success")
+                $(this).tooltip('option', 'content', response);
+            }
+        });
+    });
+
     $(".info-popup").mouseout(function () {
         // re-initializing tooltip
         $(this).attr('title', 'Please wait...');
