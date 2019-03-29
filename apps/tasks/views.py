@@ -8,6 +8,7 @@ def index(request):
     context = {
         "user": this_user,
         "tasks": tasks,
+        "unassigned_tasks": this_user.home.all_tasks.all().filter(worker=None)
     }
 
     return render(request,"tasks/index.html", context)
@@ -32,7 +33,13 @@ def assign(request):
     this_task.worker = User.objects.get(id=request.POST['receiver'])
     this_task.save()
     
-    return HttpResponse("query success")
+    return redirect('/tasks/')
 
 def finish(request):
-    pass
+    if request.method == "GET":
+        return redirect('/tasks/')
+
+    this_task = Task.objects.get(id=request.POST['task-id'])
+    this_task.delete()
+
+    return redirect('/tasks/')

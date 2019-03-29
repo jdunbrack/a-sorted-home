@@ -38,10 +38,16 @@ $('.task-list').on('sortreceive', function (e, ui) {
     $.ajax({
         type: "post",
         url: "/tasks/assign",
-        data: data,
-        success: function (response) {
-            console.log(response)
-        }
+        data: data
     });
 });
 
+$('a[href="/tasks/finish"]').click(function(e) {
+    e.preventDefault()
+    let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id')
+    console.log(data)
+    $.post({
+        url: "/tasks/finish",
+        data: data
+    });
+});
