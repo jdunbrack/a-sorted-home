@@ -25,7 +25,7 @@ $(document).ready(function () {
     function popoverInit() {
         $('.info-popup').popover({
             trigger: 'hover',
-            open: function () {
+            content: function () {
                 let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent().attr("data-task-id");
                 let html_out = ""
                 $.ajax({
@@ -34,12 +34,9 @@ $(document).ready(function () {
                     data: data,
                     success: function (response) {
                         html_out = response;
-                        popoverInit();
                     }
                 });
-                $(this).popover({
-                    content: html_out
-                });
+                return html_out;
             },
             html: true
         })
