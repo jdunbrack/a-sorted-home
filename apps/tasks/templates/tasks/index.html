@@ -62,7 +62,7 @@
             <div class="main-tile task-tile col-6 col-md-4 mx-auto text-center my-5">
                 <h5>{{user.home.name}}</h5>
                 <p class="text-info">This group has {{user.home.all_tasks|length}} general tasks.</p>
-                <img class="col-11 mx-auto" src="{% static 'login_reg/img/divider.jpg' %}">
+                <img class="col-11 mx-auto" src="{% static 'login_reg/img/divider.png' %}">
                 <ul class="task-list list-unstyled py-1">
                 {% for task in tasks %}
                     <li class="task-row d-inline-block col-10 mx-auto my-1 bg-light" data-task-id="{{task.id}}">
@@ -80,7 +80,7 @@
                 <div class="task-tile col-10 col-md-5 text-center my-5 mx-1 bg-muted" data-user-id="{{user.id}}">
                     <img class="profile-pic mx-auto" src="{{user.profile_pic}}" alt="profile picture">
                     <h5>{{user.first_name}}</h5>
-                    <img class="col-11 mx-auto" src="{% static 'login_reg/img/divider.jpg' %}">
+                    <img class="col-11 mx-auto" src="{% static 'login_reg/img/divider.png' %}">
                     <ul class="task-list list-unstyled py-1">
                     {% for task in user.tasks.all %}
                         <li class="task-row d-inline-block col-10 mx-auto my-1 bg-light" data-task-id="{{task.id}}">
@@ -101,7 +101,7 @@
                             <img class="profile-pic mx-auto" src="{{member.profile_pic}}"
                                 alt="profile picture">
                             <h5>{{member.first_name}}</h5>
-                            <img class="col-11 mx-auto" src="{% static 'login_reg/img/divider.jpg' %}">
+                            <img class="col-11 mx-auto" src="{% static 'login_reg/img/divider.png' %}">
                             <ul class="task-list list-unstyled py-1">
                             {% for task in member.tasks.all %}
                             <li class="task-row d-inline-block col-10 mx-auto my-1 bg-light" data-task-id="{{task.id}}">

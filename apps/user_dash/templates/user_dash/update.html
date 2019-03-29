@@ -37,7 +37,7 @@
                 <div id="pw1-warn"></div>
                 <input class="btn btn-primary btn-lg my-3 mx-auto" type="submit" value="Save"> 
             </form>
-            <img class="divider col-12" src="{% static 'login_reg/img/divider.jpg' %}">
+            <img class="divider col-12" src="{% static 'login_reg/img/divider.png' %}">
             <form class="form-group ml-4" action="/users/add-picture" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <img id="profile-pic" src="{{user.profile_pic}}">
@@ -51,7 +51,7 @@
                 <p class="small text-muted">Profile picture is not updated until you hit save below!</p>
                 <input class="btn btn-primary btn-lg mb-3 mx-auto" type="submit" value="Save">
             </form>
-            <img class="divider col-12" src="{% static 'login_reg/img/divider.jpg' %}">
+            <img class="divider col-12" src="{% static 'login_reg/img/divider.png' %}">
             <form id="pw-update" class="ml-4 form-group" action="/users/change-pw" method="post">
                 {% csrf_token %}
                 <p>To update your password, please enter your current password followed by your new password twice.</p>
