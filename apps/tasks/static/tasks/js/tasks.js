@@ -22,6 +22,8 @@ $('.task-list').sortable({
     revert: true,
     tolerance: 'pointer',
     zIndex: 10000,
-    connectWith: '.task-list'
-})
+    connectWith: '.task-list',
+    placeholder: "task-placeholder",
+    forcePlaceholderSize: true
+});
 
