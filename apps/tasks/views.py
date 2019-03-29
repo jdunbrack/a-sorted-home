@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 
 def index(request):
@@ -13,7 +13,16 @@ def index(request):
     return render(request,"tasks/index.html", context)
 
 def create(request):
-    pass # only add to db if home exists
+    # only add to db if home exists
+    if request.method == "GET":
+        return redirect('/tasks/')
+    
+    this_user = User.objects.get(id=request.session['uid'])
+    this_home = this_user.home
+
+    new_task = Task.object.create(name=request.POST['name'], description=request.POST['desc'], home=this_home)
+
+    return render(request, "task-partial.html", { 'task': new_task })
 
 def assign(request):
     pass # only add to db if home exists
