@@ -36,19 +36,21 @@ $(document).ready(function () {
     //     html: true
     // });
 
-    $('*[data-poload]').hover(function () {
-        var e = $(this);
-        e.off('hover');
-        $.get(e.data('poload'), function (d) {
-            e.popover({
-                html: true,
-                placement: 'top',
-                content: d
-            }).popover('show');
+    function popoverInit () {
+        $('*[data-poload]').hover(function () {
+            var e = $(this);
+            e.off('hover');
+            $.get(e.data('poload'), function (d) {
+                e.popover({
+                    html: true,
+                    placement: 'top',
+                    content: d
+                }).popover('show');
+            });
+        }, function() {
+            $(this).popover('hide');
         });
-    }, function() {
-        $(this).popover('hide');
-    });
+    }
 
     $('#add-task').click(function (e) {1
         e.preventDefault();
@@ -60,6 +62,7 @@ $(document).ready(function () {
             success: function (response) {
                 $('.main-tile .task-list').append(response)
                 $('#close-modal').trigger('click');
+                popoverInit();
             }
         });
     });
