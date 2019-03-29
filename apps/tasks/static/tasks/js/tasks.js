@@ -20,32 +20,31 @@ $(document).ready(function () {
     //     }
     // });
 
+    // $('.info-popup').popover({
+    //     trigger: 'hover',
+    //     content: function () {
+    //         let html_out = ""
+    //         $.ajax({
+    //             type: "GET",
+    //             url: "/tasks/info/" + $(this).parent().attr("data-task-id"),
+    //             success: function (response) {
+    //                 html_out = response;
+    //             }
+    //         });
+    //         return html_out;
+    //     },
+    //     html: true
+    // });
 
-
-    function popoverInit() {
-        $('.info-popup').popover({
-            trigger: 'hover',
-            content: function () {
-                let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent().attr("data-task-id");
-                let html_out = ""
-                $.ajax({
-                    type: "POST",
-                    url: "/tasks/info",
-                    data: data,
-                    success: function (response) {
-                        html_out = response;
-                    }
-                });
-                return html_out;
-            },
-            html: true
-        })
-    };
-
-    $(document).ajaxComplete(function () {
-        popoverInit();
+    $('*[data-poload]').hover(function () {
+        var e = $(this);
+        e.off('hover');
+        $.get(e.data('poload'), function (d) {
+            e.popover({
+                content: d
+            }).popover('show');
+        });
     });
-    popoverInit();
 
     $('#add-task').click(function (e) {1
         e.preventDefault();

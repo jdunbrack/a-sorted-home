@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^create$', views.create),
     url(r'^assign$', views.assign),
     url(r'^finish$', views.finish),
-    url(r'^info$', views.get_info),
+    url(r'^info/(?P<task_id>\d+)$', views.get_info),
 ]
