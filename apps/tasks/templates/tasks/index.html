@@ -45,9 +45,9 @@
                         <div class="modal-body">
                             <form id="new-task" class="form-group" action="/tasks/create" method="post">
                                 {% csrf_token %}
-                                <label for="task-name">Task's Name:</label><span class="small text-muted">(It's best for the name to be short)</span>
+                                <label for="task-name">Task's Name:</label><span class="small text-muted ml-3">(Short and simple!)</span>
                                 <input class="form-control col-8" id="task-name" type="text" name="name" placeholder="Walk Dog">
-                                <label for="task-desc">Decsription:</label><span class="small text-muted">(Max 255 Characters)</span>
+                                <label for="task-desc">Decsription:</label><span class="small text-muted ml-3">(Max 255 Characters)</span>
                                 <textarea class="form-control col-12" id="task-desc" name="desc"></textarea> 
                                 <input id="add-task" class="btn btn-lg button-primary mx-auto" type="submit" value="Add Task">
                             </form> 
