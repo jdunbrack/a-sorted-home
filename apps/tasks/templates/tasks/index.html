@@ -65,10 +65,10 @@
                 <img class="col-11 mx-auto" src="{% static 'login_reg/img/divider.png' %}">
                 <ul class="task-list list-unstyled py-1">
                 {% for task in tasks %}
-                    <li class="task-row d-inline-block col-10 mx-auto my-1 bg-light" data-task-id="{{task.id}}">
+                    <li class="task-row d-inline-block col-10 mx-auto my-1 bg-white" data-task-id="{{task.id}}">
                         <a href="#" role="button" alt="task information" id="info-popup"><i class="fas fa-sm fa-info-circle text-dark"></i></a>
                         {{task.name}}
-                        <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-user-plus text-dark"></i></a>
+                        <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-share text-dark"></i></a>
                         <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
                         <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-sm fa-trash-alt text-danger"></i></a>
                     </li>
@@ -83,10 +83,10 @@
                     <img class="col-11 mx-auto" src="{% static 'login_reg/img/divider.png' %}">
                     <ul class="task-list list-unstyled py-1">
                     {% for task in user.tasks.all %}
-                        <li class="task-row d-inline-block col-10 mx-auto my-1 bg-light" data-task-id="{{task.id}}">
+                        <li class="task-row d-inline-block col-10 mx-auto my-1 bg-white" data-task-id="{{task.id}}">
                             <a href="#" role="button" alt="task information" id="info-popup"><i class="fas fa-sm fa-info-circle text-dark"></i></a>
                             {{task.name}}
-                            <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-user-plus text-dark"></i></a>
+                            <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-share text-dark"></i></a>
                             <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
                             <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-sm fa-trash-alt text-danger"></i></a>
                         </li>
@@ -104,10 +104,10 @@
                             <img class="col-11 mx-auto" src="{% static 'login_reg/img/divider.png' %}">
                             <ul class="task-list list-unstyled py-1">
                             {% for task in member.tasks.all %}
-                            <li class="task-row d-inline-block col-10 mx-auto my-1 bg-light" data-task-id="{{task.id}}">
+                            <li class="task-row d-inline-block col-10 mx-auto my-1 bg-white" data-task-id="{{task.id}}">
                                 <a href="#" role="button" alt="task information" id="info-popup"><i class="fas fa-sm fa-info-circle text-dark"></i></a>
                                 {{task.name}}
-                                <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-user-plus text-dark"></i></a>
+                                <a href="#" role="button" alt="Click to open Assign menu" id="assign-popup"><i class="fas fa-sm fa-share text-dark"></i></a>
                                 <a href="/tasks/finish" role="button" alt="Click to mark finished"><i class="fas fa-sm fa-check text-success"></i></a>
                                 <a href="/tasks/finish" role="button" alt="Click to delete task"><i class="far fa-sm fa-trash-alt text-danger"></i></a>
                             </li>
