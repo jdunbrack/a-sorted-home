@@ -14,8 +14,8 @@
     padding: 25px 10px;
 }
 
-.main-tile {
-    background-color: lightslategray;
+#unassigned-count {
+    color: #055472;
 }
 
 .task-tile a {
