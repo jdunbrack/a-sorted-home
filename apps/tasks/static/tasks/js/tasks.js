@@ -43,7 +43,7 @@ $('.task-list').on('sortreceive', function (e, ui) {
 
 $('a[href="/tasks/finish"]').click(function(e) {
     e.preventDefault();
-    let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=" + $(this).parent('.task-row').attr('data-task-id');
+    let data = "csrfmiddlewaretoken=" + document.getElementsByName('csrfmiddlewaretoken')[0].value + "&task-id=5";
     $.post({
         url: "/tasks/finish",
         data: data
