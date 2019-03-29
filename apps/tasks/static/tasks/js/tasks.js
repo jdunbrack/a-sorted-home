@@ -10,6 +10,7 @@ $('#add-task').click(function(e) {
         data: data,
         success: function (response) {
             $('.main-tile .task-list').append(response)
+            $('#close-modal').trigger('click');
         }
     });
 });
