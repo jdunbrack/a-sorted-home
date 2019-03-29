@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponse
-from django.utils import simplejson
+import json
 from .models import *
 
 def index(request):
@@ -47,7 +47,7 @@ def finish(request):
 
 def get_info(request):
     task = Task.objects.get(id=request.POST['task-id'])
-    json_out = simplejson.dumps({
+    json_out = json.dumps({
         "name": task.name,
         "worker": task.worker,
         "description": task.description
