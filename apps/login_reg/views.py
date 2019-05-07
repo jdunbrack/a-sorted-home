@@ -89,7 +89,7 @@ def name_verify(request):
 
         if NAME_REGEX.match(request.POST['first-name']) == None or NAME_REGEX.math(request.POST['last-name']) == None:
             valid = False
-        elif:
+        else:
             valid = True
 
         return render(request, 'login_reg/name-partial.html', {"valid": valid})
