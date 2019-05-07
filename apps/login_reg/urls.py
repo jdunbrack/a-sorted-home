@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'check-pw$', views.pw_verify),
     url(r'register$', views.add_user),
     url(r'logout$', views.logout),
+    url(r'check-name$', views.name_verify),
 ]
