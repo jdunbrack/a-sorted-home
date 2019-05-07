@@ -53,3 +53,27 @@ $('#bday').focusout(function() {
     });
 
 });
+
+$('#reg-fname').keyup(function(e) {
+    data = $('#reg').serialize();
+    $.ajax({
+        type: "post",
+        url: "/login/check-name",
+        data: data,
+        success: function(res) {
+            $('#name-warn').html(res);
+        }
+    });
+});
+
+$('#reg-lname').keyup(function(e) {
+    data = $('#reg').serialize();
+    $.ajax({
+        type: "post",
+        url: "/login/check-name",
+        data: data,
+        success: function(res) {
+            $('#name-warn').html(res);
+        }
+    });
+});

@@ -43,6 +43,7 @@
                                 {% csrf_token %}
                                 First Name: <input type="text" id="reg-fname" class="form-control my-2" name="first-name" required>
                                 Last Name: <input type="text" id="reg-lname" class="form-control my-2" name="last-name" required>
+                                <div id="name-warn" class="small text-danger"></div>
                                 Email address: <input type="email" id="reg-email" class="form-control my-2" name="email" required>
                                 <div id="email-warn" class="small text-danger"></div>
                                 Password: <input type="password" class="form-control mt-2" id="reg-pw-entry" name="pw-entry" required>

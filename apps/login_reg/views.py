@@ -82,3 +82,17 @@ def age_verify(request):
 
     return render(request,'login_reg/age-partial.html', {"valid": valid})
 
+def name_verify(request):
+    if request.POST['login_reg'] == 'register':
+            
+        NAME_REGEX = re.compile(r'^[a-zA-Z]+')
+
+        if NAME_REGEX.match(request.POST['first-name']) == None or NAME_REGEX.math(request.POST['last-name']) == None:
+            valid = False
+        elif:
+            valid = True
+
+        return render(request, 'login_reg/name-partial.html', {"valid": valid})
+
+    else:
+        return redirect('/')
