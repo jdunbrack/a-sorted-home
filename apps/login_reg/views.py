@@ -85,9 +85,9 @@ def age_verify(request):
 def name_verify(request):
     if request.POST['login_reg'] == 'register':
             
-        NAME_REGEX = re.compile(r'^[a-zA-Z]+$')
+        NAME_REGEX = re.compile(r'\d')
 
-        if NAME_REGEX.match(request.POST['first-name']) == None or NAME_REGEX.math(request.POST['last-name']) == None:
+        if NAME_REGEX.match(request.POST['first-name']) != None or NAME_REGEX.math(request.POST['last-name']) != None:
             valid = False
         else:
             valid = True
