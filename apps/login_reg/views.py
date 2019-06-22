@@ -44,7 +44,7 @@ def add_user(request):
         NAME_REGEX = re.compile(r'[^\W][\d]')
 
         if NAME_REGEX.search(request.POST['first-name']) != None or NAME_REGEX.search(request.POST['last-name']) != None:
-            return redirect('/login/')
+            return HttpResponse("Invalid")
 
         PW_REGEX = re.compile(r'(?=.*[0-9]+)(?=.*[A-Z]+)(?=.*[a-z]+)')
         pw = request.POST['pw-entry']

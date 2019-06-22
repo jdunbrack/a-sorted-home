@@ -135,7 +135,7 @@ $('#register-btn').click(function(e) {
         data: data,
         success: function(response) {
             if (response == "Invalid") {
-                $('#login-warn').text("This username and password combination does not exist.");
+                $('#login-warn').text("There are errors in your information, please fix them and try again.");
             }
             else {
                 $('#loginModal').modal('hide');
