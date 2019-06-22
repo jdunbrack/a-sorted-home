@@ -1,5 +1,5 @@
 #modal {
-    z-index: 20000;
+    z-index: 2000;
 }
 
 .profile-pic {
@@ -23,7 +23,7 @@
 }
 
 .task-row {
-    z-index: 10000;
+    z-index: 1000;
 }
 
 .task-list {
