@@ -44,7 +44,7 @@ $('#reg-fname').keyup(function(e) {
         url: "/login/check-name",
         data: data,
         success: function (response) {
-            $('#name_warn').html(response)
+            $('#name-warn').html(response)
         }
     });
 
@@ -58,7 +58,7 @@ $('#reg-lname').keyup(function(e) {
         url: "/login/check-name",
         data: data,
         success: function (response) {
-            $('#name_warn').html(response)
+            $('#name-warn').html(response)
         }
     });
 
