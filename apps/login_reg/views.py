@@ -43,7 +43,7 @@ def add_user(request):
 
         NAME_REGEX = re.compile(r'[^\W][\d]')
 
-        if NAME_REGEX.match(request.POST['first-name']) != None or NAME_REGEX.match(request.POST['last-name']) != None:
+        if NAME_REGEX.search(request.POST['first-name']) != None or NAME_REGEX.search(request.POST['last-name']) != None:
             return redirect('/login/')
 
         PW_REGEX = re.compile(r'(?=.*[0-9]+)(?=.*[A-Z]+)(?=.*[a-z]+)')
@@ -99,7 +99,7 @@ def name_verify(request):
             
         NAME_REGEX = re.compile(r'[^\W][\d]')
 
-        if NAME_REGEX.match(request.POST['first-name']) != None or NAME_REGEX.match(request.POST['last-name']) != None:
+        if NAME_REGEX.search(request.POST['first-name']) != None or NAME_REGEX.search(request.POST['last-name']) != None:
             valid = False
         else:
             valid = True
