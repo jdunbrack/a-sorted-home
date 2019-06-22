@@ -1,3 +1,31 @@
+$('#reg-fname').keyup(function(e) {
+
+    data = $('#reg').serialize();
+    $.ajax({
+        type: "post",
+        url: "/login/check-name",
+        data: data,
+        success: function (response) {
+            $('#name_warn').html(response)
+        }
+    });
+
+});
+
+$('#reg-lname').keyup(function(e) {
+
+    data = $('#reg').serialize();
+    $.ajax({
+        type: "post",
+        url: "/login/check-name",
+        data: data,
+        success: function (response) {
+            $('#name_warn').html(response)
+        }
+    });
+
+});
+
 $('#email').keyup(function(e) {
 
     data = $('#reg').serialize();

@@ -40,6 +40,18 @@ def add_user(request):
         return redirect('/login/')
 
     if request.POST['login_reg'] == "register":
+
+        NAME_REGEX = re.compile(r'[^\W][\d]')
+
+        if NAME_REGEX.match(request.POST['first-name']) != None or NAME_REGEX.math(request.POST['last-name']) != None:
+            return redirect('/login/')
+
+        PW_REGEX = re.compile(r'(?=.*[0-9]+)(?=.*[A-Z]+)(?=.*[a-z]+)')
+        pw = request.POST['pw-entry']
+
+        if PW_REGEX.match(pw) == None:
+            return redirect('/login/')
+        
         user_pw = bcrypt.hashpw(request.POST['pw-entry'].encode(), bcrypt.gensalt())
 
         new_user = User.objects.create(first_name=request.POST['first-name'], last_name=request.POST['last-name'],\

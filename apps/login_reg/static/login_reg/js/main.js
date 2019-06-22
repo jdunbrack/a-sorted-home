@@ -36,6 +36,35 @@ $('.modal-toggler').click(function() {
     $('#login-form').slideToggle('slow');
 });
 
+$('#reg-fname').keyup(function(e) {
+
+    data = $('#reg').serialize();
+    $.ajax({
+        type: "post",
+        url: "/login/check-name",
+        data: data,
+        success: function (response) {
+            $('#name_warn').html(response)
+        }
+    });
+
+});
+
+$('#reg-lname').keyup(function(e) {
+
+    data = $('#reg').serialize();
+    $.ajax({
+        type: "post",
+        url: "/login/check-name",
+        data: data,
+        success: function (response) {
+            $('#name_warn').html(response)
+        }
+    });
+
+});
+
+
 $('#reg-email').keyup(function() {
     let data = $('#register').serialize();
     $.ajax({
