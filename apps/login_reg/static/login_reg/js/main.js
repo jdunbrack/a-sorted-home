@@ -38,7 +38,7 @@ $('.modal-toggler').click(function() {
 
 $('#reg-fname').keyup(function(e) {
 
-    data = $('#reg').serialize();
+    data = $('#register').serialize();
     $.ajax({
         type: "post",
         url: "/login/check-name",
@@ -52,7 +52,7 @@ $('#reg-fname').keyup(function(e) {
 
 $('#reg-lname').keyup(function(e) {
 
-    data = $('#reg').serialize();
+    data = $('#register').serialize();
     $.ajax({
         type: "post",
         url: "/login/check-name",
