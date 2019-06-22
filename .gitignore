@@ -1,3 +1,4 @@
+XDG_CACHE_HOME/
 db.sqlite3
 requirements.txt
 a_sorted_home.sock
